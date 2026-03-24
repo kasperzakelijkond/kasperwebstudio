@@ -157,7 +157,21 @@
 
   <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
     <button class="btn" type="submit">Verstuur aanvraag</button>
-    <button type="button" class="btn secondary" onclick="openMailto()">Mail direct</button>
+<script>
+function openMailto() {
+  const email = document.querySelector("input[name='email']").value || "";
+  const name = document.querySelector("input[name='name']").value || "";
+  const message = document.querySelector("textarea[name='message']")?.value || "";
+
+  const subject = encodeURIComponent("Nieuwe aanvraag via website");
+  const body = encodeURIComponent(
+    `Naam: ${name}\nE-mail: ${email}\n\nBericht:\n${message}`
+  );
+
+  // Mail gaat naar jou (Kasper)
+  window.location.href = `mailto:kasperzakelijkond@gmail.com?subject=${subject}&body=${body}`;
+}
+</script>
     <div class="small">Of bel: <strong style="color:var(--accent)">06‑0000‑0000</strong></div>
   </div>
 
