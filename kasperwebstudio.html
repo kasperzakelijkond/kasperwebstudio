@@ -1022,10 +1022,9 @@
   <p class="lead">Klaar om te starten? Vul het formulier in of stuur direct een e‑mail / bel.</p>
 
   <div class="contact-grid">
-<!-- FORM -->
 <form 
   id="contactForm"
-  action="#contact"
+  action="https://formspree.io/f/mnjgeovw"
   method="POST"
   aria-label="Contactformulier"
 >
@@ -1055,10 +1054,8 @@
 
   <div>
     <label for="message">Bericht</label>
-    <textarea id="message" name="message" placeholder="Vertel kort wat je nodig hebt..." required></textarea>
+    <textarea id="message" name="message" required placeholder="Vertel kort wat je nodig hebt..."></textarea>
   </div>
-
-  <!-- BELANGRIJK: GEEN _redirect MEER -->
 
   <input type="hidden" name="_subject" value="Nieuwe aanvraag via je website">
 
@@ -1070,6 +1067,33 @@
   <div id="formMsg" class="small" style="color:var(--muted);margin-top:8px"></div>
 </form>
 
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const msg = document.getElementById("formMsg");
+
+  msg.textContent = "Versturen…";
+
+  const data = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: data,
+    headers: { "Accept": "application/json" }
+  });
+
+  if (response.ok) {
+    msg.style.color = "green";
+    msg.textContent = "Bedankt! Je aanvraag is succesvol verzonden.";
+    form.reset();
+  } else {
+    msg.style.color = "red";
+    msg.textContent = "Er ging iets mis. Probeer het later opnieuw.";
+  }
+});
+</script>
 <!-- ASIDE -->
 <aside class="contact-info" aria-hidden="false">
   <h4 style="margin-top:0">Kasper Webstudio</h4>
