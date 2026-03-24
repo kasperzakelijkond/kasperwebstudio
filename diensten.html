@@ -339,23 +339,58 @@
     Niet het antwoord gevonden dat je zocht? Stuur me gerust een bericht.
   </p>
 
-  <form class="contact-form" style="max-width:420px; margin:0 auto; text-align:left;">
-    <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">Naam</label>
-    <input type="text" name="name" required
-      style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:14px;">
+<form class="contact-form" id="simpleContactForm" 
+      action="https://formspree.io/f/mnjgeovw" 
+      method="POST"
+      style="max-width:420px; margin:0 auto; text-align:left;">
 
-    <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">E‑mail</label>
-    <input type="email" name="email" required
-      style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:14px;">
+  <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">Naam</label>
+  <input type="text" name="name" required
+    style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:14px;">
 
-    <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">Je vraag</label>
-    <textarea name="message" rows="4" required
-      style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:16px;"></textarea>
+  <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">E‑mail</label>
+  <input type="email" name="email" required
+    style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:14px;">
 
-<button type="submit" class="btn" style="width:100%; margin-top:4px; cursor:pointer;">
-  Verstuur bericht
-</button>
-  </form>
+  <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">Je vraag</label>
+  <textarea name="message" rows="4" required
+    style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:16px;"></textarea>
+
+  <button type="submit" class="btn" style="width:100%; margin-top:4px; cursor:pointer;">
+    Verstuur bericht
+  </button>
+
+  <div id="simpleFormMsg" class="small" style="color:var(--muted); margin-top:10px;"></div>
+</form>
+
+<script>
+document.getElementById("simpleContactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const msg = document.getElementById("simpleFormMsg");
+
+  msg.style.color = "var(--muted)";
+  msg.textContent = "Versturen…";
+
+  const data = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: data,
+    headers: { "Accept": "application/json" }
+  });
+
+  if (response.ok) {
+    msg.style.color = "green";
+    msg.textContent = "Bedankt! Je bericht is succesvol verzonden.";
+    form.reset();
+  } else {
+    msg.style.color = "red";
+    msg.textContent = "Er ging iets mis. Probeer het later opnieuw.";
+  }
+});
+</script>
 </div><div class="faq-wrapper" style="margin-bottom:80px;"></div>
    <!-- Contact CTA -->
     <section style="padding-top:28px;text-align:center">
