@@ -192,13 +192,16 @@
     </div>
   </div>
 <script>
+/* -----------------------------
+   PROJECT DATA
+----------------------------- */
 const projects = {
   hoveniers: {
     title: 'ØERTHELBAGS',
     img: 'OERTHEL.png',
     desc: 'Moderne one‑page webshop voor een luxe tassenmerk met emotionele waarde.',
     meta: 'Levertijd: 3–5 dagen • Pakket: Starter',
-    demo: 'plantenbakdemo.html', // pas aan indien nodig
+    demo: 'plantenbakdemo.html',
     category: 'onepage'
   },
 
@@ -207,7 +210,7 @@ const projects = {
     img: 'marketingkits.png',
     desc: 'SEO geoptimaliseerde moderne landingspagina met een downloadbare lead magnet en reviews.',
     meta: 'Levertijd: 5–7 dagen • Pakket: Business',
-    demo: '#', // jouw demo‑link hier
+    demo: '#',
     category: 'booking'
   },
 
@@ -216,63 +219,76 @@ const projects = {
     img: 'barbershop.png',
     desc: 'Frisse duidelijke barbershop demo website voor Classic Cuts. Diensten, prijslijst, openingstijden, locatie, afspraakformulier en reviews.',
     meta: 'Levertijd: 7–10 dagen • Pakket: Business',
-    demo: '#', // jouw demo‑link hier
+    demo: '#',
     category: 'webshop'
   }
 };
-  // Klik op projectkaart → open modal
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => openModal(card.dataset.key));
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openModal(card.dataset.key);
-      }
-    });
+
+/* -----------------------------
+   OPEN MODAL
+----------------------------- */
+function openModal(key) {
+  const p = projects[key];
+  if (!p) return;
+
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalMeta').textContent = p.meta;
+  document.getElementById('modalDemoLink').href = p.demo;
+
+  document.getElementById('modalImageArea').innerHTML =
+    `<img src="${p.img}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover">`;
+
+  const modal = document.getElementById('projectModal');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+/* -----------------------------
+   CLOSE MODAL
+----------------------------- */
+function closeModal() {
+  const modal = document.getElementById('projectModal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+}
+
+/* ESC sluit modal */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* -----------------------------
+   CLICK EVENTS VOOR KAARTEN
+----------------------------- */
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', () => openModal(card.dataset.key));
+
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal(card.dataset.key);
+    }
   });
+});
 
-  function openModal(key) {
-    const p = projects[key];
-    if (!p) return;
-
-    document.getElementById('modalTitle').textContent = p.title;
-    document.getElementById('modalDesc').textContent = p.desc;
-    document.getElementById('modalMeta').textContent = p.meta;
-    document.getElementById('modalDemoLink').href = p.demo;
-
-    document.getElementById('modalImageArea').innerHTML =
-      `<img src="${p.img}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover">`;
-
-    const modal = document.getElementById('projectModal');
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('projectModal');
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+/* -----------------------------
+   FILTERS
+----------------------------- */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterProjects(btn.dataset.filter);
   });
+});
 
-  // Filters
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      filterProjects(btn.dataset.filter);
-    });
+function filterProjects(filter) {
+  document.querySelectorAll('.grid .card').forEach(card => {
+    const key = card.dataset.key;
+    const cat = projects[key].category;
+    card.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
   });
-
-  function filterProjects(filter) {
-    document.querySelectorAll('.grid .card').forEach(card => {
-      const key = card.dataset.key;
-      const cat = projects[key].category;
-      card.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
-    });
-  }
-</script></body>
+}
+</script>
 </html>
