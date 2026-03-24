@@ -1,0 +1,395 @@
+<!--
+  diensten.html — Kasper Webstudio
+  INSTRUCTIES:
+  1) Plaats dit bestand in dezelfde map als je index.html en pakketten.html.
+  2) Vervang alle placeholders: /assets/logo.svg, /assets/service-*.jpg, e-mail en telefoon.
+  3) Pas teksten, prijzen en bullets aan waar nodig. Deze pagina gebruikt dezelfde stijl, fonts en kleuren als index.html.
+  4) Voor formulierverzending: koppel het formulier aan je backend of gebruik mailto fallback (zie comment in JS).
+  5) Test mobiel en desktop; afbeeldingen optimaliseren naar WebP voor betere laadtijd.
+-->
+
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diensten — Kasper Webstudio</title>
+  <meta name="description" content="Diensten van Kasper Webstudio: Website ontwikkeling, Branding & design, Content & copy. Transparante processen en snelle oplevering." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f62fe;
+      --accent-2:#10b981;
+      --dark:#0b1220;
+      --card:#f8fafc;
+      --radius:12px;
+      --max-width:1100px;
+      --pad:28px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:var(--pad)}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6f9cff);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:Poppins;font-size:20px}
+    nav a{color:var(--muted);margin-left:16px;font-weight:600}
+    .hero{display:flex;gap:28px;align-items:center;padding:36px 0;border-bottom:1px solid #f3f4f6}
+    .hero-left{flex:1}
+    .hero-left h1{font-family:Poppins;font-size:32px;margin:0 0 10px;line-height:1.02;text-align:center}
+    .hero-left p{color:var(--muted);margin:0 0 18px;text-align:center}
+    .hero-cta{display:flex;gap:12px;justify-content:center}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;background:var(--accent);color:white;font-weight:700;font-family:Poppins}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(15,98,254,0.12)}
+    .hero-img{width:320px;border-radius:12px;overflow:hidden;flex-shrink:0}
+    .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Services layout */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .service-card{background:white;border-radius:12px;padding:20px;border:1px solid #f3f4f6;display:flex;flex-direction:column;gap:12px;min-height:320px}
+    .service-card h3{margin:0;font-family:Poppins;font-size:18px}
+    .service-card p.lead{color:var(--muted);margin:0}
+    .service-card ul{padding-left:18px;color:var(--muted);margin:8px 0 0}
+    .service-card .price{font-weight:800;color:var(--accent);margin-top:8px}
+
+    /* Process steps */
+    .process{display:flex;gap:12px;margin-top:28px;align-items:flex-start}
+    .step{background:white;padding:16px;border-radius:12px;border:1px solid #f3f4f6;flex:1}
+    .step h4{margin:0 0 8px;font-family:Poppins}
+    .step p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Add-ons & pricing */
+    .addons{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
+    .addon{background:white;padding:16px;border-radius:12px;border:1px solid #f3f4f6}
+
+    /* FAQ */
+    .faq{margin-top:28px}
+    .faq .q{background:white;padding:14px;border-radius:10px;border:1px solid #f3f4f6;margin-bottom:10px}
+
+    /* Contact CTA */
+    .contact-cta{display:flex;gap:12px;align-items:center;margin-top:22px;justify-content:center}
+
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f3f4f6;margin-top:36px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{flex-direction:column;align-items:center}
+      .hero-left h1{font-size:28px}
+      .hero-img{width:100%;max-width:420px}
+      .addons{grid-template-columns:1fr}
+      .process{flex-direction:column}
+    }
+    @media (max-width:640px){
+      .services-grid{grid-template-columns:1fr}
+      header{padding:12px 0}
+      .logo{width:48px;height:48px}
+      .hero-left h1{text-align:center}
+    }.faq .q {
+  border: 1px solid #e5e5e5; /* LICHTGRIJS, altijd zichtbaar */
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.faq .q:hover {
+  background: #fafafa;
+  border-color: #dcdcdc;
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .35s ease, opacity .25s ease;
+  margin-top: 6px;
+}
+
+.q.active .answer {
+  max-height: 300px;
+  opacity: 1;
+}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">KW</div>
+      <div>
+        <div style="font-weight:700">Kasper Webstudio</div>
+        <div style="font-size:13px;color:var(--muted)">Websites • Branding • Content</div>
+      </div>
+    </div>
+
+    <nav aria-label="Hoofdmenu">
+      <a href="kasperwebstudio.html">Home</a>
+      <a href="diensten.html" style="margin-left:10px;font-weight:800;color:var(--dark)">Diensten</a>
+      <a href="portfolio.html" style="margin-left:10px">Portfolio</a>
+      <a href="pakketten.html" style="margin-left:10px;">Pakketten</a>
+      <a href="contact.html#contact" style="margin-left:10px">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+ <section class="hero" aria-labelledby="diensten-hero">
+  <div class="hero-left">
+    <h1 id="diensten-hero">Wat ik voor jouw bedrijf kan doen</h1>
+    <p class="lead">
+      Van concept tot livegang: heldere processen, snelle oplevering en resultaatgerichte websites. Bestel een pakket of vraag een offerte aan. 
+    </p><div style="height:40px;"></div>
+    <div class="hero-cta">
+      <a class="btn" href="pakketten.html">Bekijk welk pakket bij jou past</a>
+    </div>
+  </div>
+</section>
+    <!-- SERVICES GRID -->
+   <section aria-labelledby="services-title" style="padding-top:28px">
+  <h2 id="services-title" style="font-family:Poppins;text-align:center">Mijn diensten</h2>
+  <p class="note" style="text-align:center;margin-top:8px;color:var(--muted)">
+    Duidelijke deliverables, kies los of combineer in een pakket.
+  </p>
+
+  <div class="services-grid" role="list">
+
+    <!-- Website ontwikkeling -->
+    <article class="service-card" role="listitem" aria-labelledby="svc-web-title">
+      <h3 id="svc-web-title">Website ontwikkeling</h3>
+      <p class="lead">Responsive, snel en conversiegericht. Van one‑page tot uitgebreide bedrijfswebsite met CMS‑optie.</p>
+      <ul>
+        <li>Responsive HTML/CSS & mobiel geoptimaliseerd</li>
+        <li>Basis SEO: titles, meta, H1 en alt‑teksten</li>
+        <li>Contactformulier, Google Maps integratie</li>
+        <li>Performance optimalisatie en lazy loading</li>
+    <li>Volledige apparaat‑ en browser‑test
+</li>
+    <li> Analytics‑integratie (zoals Google Analytics)
+</li>
+      </ul>
+    </article>
+
+    <!-- Branding & design -->
+    <article class="service-card" role="listitem" aria-labelledby="svc-brand-title">
+      <h3 id="svc-brand-title">Branding & design</h3>
+      <p class="lead">Een herkenbare visuele identiteit die vertrouwen wekt en je website versterkt.</p>
+      <ul>
+        <li>Logo en monogram</li>
+        <li>Kleurenpalet en typografie</li>
+        <li>Brandguide en social assets</li>
+        <li>Design van homepage en key templates</li>
+<li>UI‑design voor belangrijke website‑elementen</li>
+</li>Visitekaartjes & basis huisstijl‑toepassingen
+</li>
+      </ul>
+    </article>
+
+    <!-- Content & copy -->
+    <article class="service-card" role="listitem" aria-labelledby="svc-copy-title">
+      <h3 id="svc-copy-title">Content & copy</h3>
+      <p class="lead">Heldere, verkoopgerichte teksten en content‑structuur die bezoekers converteert.</p>
+      <ul>
+        <li>Homepage copy en dienstenpagina's</li>
+        <li>SEO‑gerichte teksten en meta descriptions</li>
+        <li>Call‑to‑action teksten en e‑mail templates</li>
+        <li>Optioneel: social post templates (5 stuks)</li>
+<li>Conversie‑optimalisatie van teksten</li>
+</ul>
+</article>
+
+  </div>
+</section>    <!-- Process -->
+<section aria-labelledby="process-title" style="padding-top:28px">
+  <h2 id="process-title" style="font-family:Poppins;text-align:center">Hoe het werkt?</h2>
+  <p class="note" style="text-align:center;color:var(--muted)">
+    Een vaste workflow zorgt voor snelheid en duidelijkheid, dit kun je van mij verwachten.
+  </p>
+
+  <div class="process" role="list">
+
+    <div class="step" role="listitem" aria-labelledby="step-intake">
+      <h4 id="step-intake">1. Intake & strategie</h4>
+      <p>Je vult een korte vragenlijst in en levert logo + teksten aan. Binnen 24 uur ontvang je een bevestiging en planning.</p>
+    </div>
+
+    <div class="step" role="listitem" aria-labelledby="step-design">
+      <h4 id="step-design">2. Design & concept</h4>
+      <p>Ik maak een wireframe en homepage voorstel. Je krijgt 1–3+ revisierondes afhankelijk van het gekozen pakket.</p>
+    </div>
+
+    <div class="step" role="listitem" aria-labelledby="step-build">
+      <h4 id="step-build">3. Ontwikkeling & optimalisatie</h4>
+      <p>Ik bouw de site, test op mobiel en desktop en zet de site live. Resterende betaling bij oplevering.</p>
+    </div>
+
+    <div class="step" role="listitem" aria-labelledby="step-launch">
+      <h4 id="step-launch">4. Livegang & afronding</h4>
+      <p>Ik koppel domein en hosting, voerx`x laatste checks uit en je ontvangt uitleg over beheer en gebruik.</p>
+    </div>
+
+  </div>
+</section>
+
+    <!-- Add-ons -->
+    <section aria-labelledby="addons-title" style="padding-top:28px">
+      <h2 id="addons-title" style="font-family:Poppins;text-align:center">Optionele add‑ons</h2>
+      <p class="note" style="text-align:center;color:var(--muted)">Handige extra's die je project compleet maken.</p>
+
+      <div class="addons">
+        <div class="addon">
+          <h4>Hosting & onderhoud</h4>
+          <p class="small" style="color:var(--muted)">€60/jaar — inclusief SSL, back‑ups en kleine updates (tot 30 min/maand).</p>
+        </div>
+
+        <div class="addon">
+          <h4>Content‑pakket</h4>
+          <p class="small" style="color:var(--muted)">Professionele teksten voor homepage + dienstenpagina's — vanaf €250.</p>
+        </div>
+
+        <div class="addon">
+          <h4>Extra revisies / maatwerk</h4>
+          <p class="small" style="color:var(--muted)">Meerwerk wordt gefactureerd à €60/uur of volgens offerte.</p>
+        </div>
+
+        <div class="addon">
+          <h4>SEO‑upgrade</h4>
+          <p class="small" style="color:var(--muted)">Technische SEO en contentoptimalisatie als maandelijkse service — prijs op aanvraag.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+ <div class="faq">
+
+  <div class="q">
+    <strong>Hoe snel kan mijn site live?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Starter: 3–5 werkdagen na aanlevering content. Business: 7–10 werkdagen. Premium: 14–21 werkdagen.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Wat als ik geen teksten heb?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Je kunt content zelf aanleveren of kiezen voor ons content‑pakket. We geven duidelijke richtlijnen voor snelle aanlevering.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Hoe werkt betaling?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      50% aanbetaling bij opdracht, 50% bij oplevering. Factuur binnen 7 dagen.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Toont u mijn site als referentie?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Standaard ja, tenzij je dit schriftelijk anders aangeeft in het contract.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Kan ik later pagina’s laten uitbreiden?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Ja, je kunt altijd extra pagina’s, functies of modules laten toevoegen tegen een vaste meerprijs.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Regelen jullie ook hosting en domein?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Je kunt zelf hosting kiezen of wij regelen het voor je via een betrouwbare hostingpartner.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Krijg ik toegang tot mijn website?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Ja, je krijgt volledige toegang en uitleg over hoe je teksten en afbeeldingen kunt aanpassen.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Wat gebeurt er na oplevering?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Je ontvangt 7 dagen support voor kleine aanpassingen en kunt kiezen voor een onderhoudspakket.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Kan ik mijn huidige website laten vernieuwen?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Zeker, we kunnen bestaande content hergebruiken en je site volledig moderniseren.
+    </p>
+  </div>
+
+  <div class="q">
+    <strong>Is mijn website SEO‑vriendelijk?</strong>
+    <p class="answer small" style="color:var(--muted)">
+      Ja, elke site wordt gebouwd met basis SEO, snelle laadtijd en een logische structuur.
+    </p>
+  </div>
+<div class="faq-contact" style="margin-top:100px; text-align:center;">
+</div> <div class="faq-contact" style="margin-top:24px; text-align:center;">
+  <p style="color:var(--muted); margin-bottom:12px;">
+    Niet het antwoord gevonden dat je zocht? Stuur me gerust een bericht.
+  </p>
+
+  <form class="contact-form" style="max-width:420px; margin:0 auto; text-align:left;">
+    <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">Naam</label>
+    <input type="text" name="name" required
+      style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:14px;">
+
+    <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">E‑mail</label>
+    <input type="email" name="email" required
+      style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:14px;">
+
+    <label class="small" style="color:var(--muted); display:block; margin-bottom:6px;">Je vraag</label>
+    <textarea name="message" rows="4" required
+      style="width:100%; padding:10px 14px; border:1px solid #e5e5e5; border-radius:8px; margin-bottom:16px;"></textarea>
+
+<button type="submit" class="btn" style="width:100%; margin-top:4px; cursor:pointer;">
+  Verstuur bericht
+</button>
+  </form>
+</div><div class="faq-wrapper" style="margin-bottom:80px;"></div>
+   <!-- Contact CTA -->
+    <section style="padding-top:28px;text-align:center">
+      <h3 style="font-family:Poppins">Klaar om te starten?</h3>
+      <p class="note" style="color:var(--muted)">Vraag een offerte aan of plan een korte kennismaking van 15 minuten.</p>
+      <div class="contact-cta">
+        <a class="btn" href="offerte.html">Offerte aanvragen</a>
+        <a class="btn secondary" href="contact.html">Plan kennismaking</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <strong>Kasper Webstudio</strong> — Websites • Branding • Content — Enschede
+      <div style="margin-top:8px;color:var(--muted)">E‑mail: <a href="mailto:info@kasperwebstudio.nl">info@kasperwebstudio.nl</a> • Tel: 06‑0000‑0000</div>
+    </div>
+  </footer>
+
+  <script>
+    // Optioneel: scroll naar een sectie als ?section=process in URL
+    const params = new URLSearchParams(window.location.search);
+    if(params.has('section')) {
+      const id = params.get('section');
+      document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+    }
+
+    // Voor formulierverzending: zie index.html instructies voor backend of mailto fallback.
+  </script><script>
+  document.querySelectorAll('.faq .q').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+</script>
+</body>
+</html>

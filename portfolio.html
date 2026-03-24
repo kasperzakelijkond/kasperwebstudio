@@ -1,0 +1,436 @@
+<!--
+  portfolio.html — Kasper Webstudio
+  INSTRUCTIES:
+  1) Plaats dit bestand in dezelfde map als index.html, pakketten.html en diensten.html.
+  2) Vervang alle placeholders: /assets/logo.svg, /assets/portfolio-1.jpg, /assets/portfolio-2.jpg, /assets/portfolio-3.jpg, e-mail en telefoon.
+  3) Elk project heeft een modal met details; vervang teksten en screenshots door echte case‑informatie.
+  4) Voor live links naar demo's: vervang href="#" met de echte demo URL (bijv. demo-hoveniers.html).
+  5) Test mobiel en desktop; optimaliseer afbeeldingen naar WebP en voeg lazy loading waar mogelijk.
+-->
+
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Kasper Webstudio</title>
+  <meta name="description" content="Portfolio van Kasper Webstudio — voorbeelden van websites voor lokale bedrijven. Demo's, casebeschrijvingen en resultaten." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f62fe;
+      --accent-2:#10b981;
+      --dark:#0b1220;
+      --card:#f8fafc;
+      --radius:12px;
+      --max-width:1100px;
+      --pad:28px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{max-width:var(--max-width);margin:0 auto;padding:var(--pad)}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6f9cff);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:Poppins;font-size:20px}
+    nav a{color:var(--muted);margin-left:16px;font-weight:600}
+
+    /* Hero */
+    .hero{padding:36px 0;border-bottom:1px solid #f3f4f6;text-align:center}
+    .hero h1{font-family:Poppins;font-size:32px;margin:0 0 8px}
+    .hero p{color:var(--muted);margin:0 0 16px}
+
+    /* Portfolio grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .card{background:white;border-radius:12px;border:1px solid #f3f4f6;overflow:hidden;display:flex;flex-direction:column;cursor:pointer}
+    .card img{height:200px;object-fit:cover;width:100%}
+    .card .meta{padding:14px}
+    .card h3{margin:0 0 6px;font-family:Poppins;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Filters / categories */
+    .filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+    .filter-btn{padding:8px 12px;border-radius:999px;border:1px solid #eef2ff;background:white;color:var(--muted);font-weight:600;cursor:pointer}
+    .filter-btn.active{background:var(--accent);color:white;border-color:transparent}
+
+    /* Case details list */
+    .case-list{margin-top:28px;display:flex;flex-direction:column;gap:12px}
+    .case-item{background:white;padding:14px;border-radius:10px;border:1px solid #f3f4f6;display:flex;gap:12px;align-items:center}
+    .case-item .thumb{width:96px;height:64px;border-radius:8px;overflow:hidden;flex-shrink:0}
+    .case-item .info h4{margin:0;font-family:Poppins;font-size:15px}
+    .case-item .info p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.5);z-index:60;padding:20px}
+    .modal.open{display:flex}
+    .modal-card{background:white;border-radius:12px;max-width:900px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(2,6,23,0.2)}
+    .modal-body{display:grid;grid-template-columns:1fr 360px;gap:0}
+    .modal-body img{width:100%;height:100%;object-fit:cover}
+    .modal-content{padding:18px}
+    .modal-content h3{margin:0 0 8px;font-family:Poppins}
+    .modal-content p{color:var(--muted);margin:0 0 12px}
+    .modal-meta{font-size:14px;color:var(--muted);margin-top:8px}
+    .modal-footer{display:flex;gap:10px;padding:12px;border-top:1px solid #f3f4f6;justify-content:flex-end}
+
+    /* CTA */
+    .cta-row{display:flex;gap:12px;justify-content:center;margin-top:22px}
+
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f3f4f6;margin-top:36px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .modal-body{grid-template-columns:1fr}
+      .modal-content{padding:14px}
+    }
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+      header{padding:12px 0}
+      .logo{width:48px;height:48px}
+      .hero h1{font-size:24px}
+      .modal-card{max-width:95%}
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">KW</div>
+      <div>
+        <div style="font-weight:700">Kasper Webstudio</div>
+        <div style="font-size:13px;color:var(--muted)">Websites • Branding • Content</div>
+      </div>
+    </div>
+
+    <nav aria-label="Hoofdmenu">
+      <a href="kasperwebstudio.html">Home</a>
+      <a href="diensten.html" style="margin-left:12px">Diensten</a>
+      <a href="portfolio.html" style="margin-left:12px;font-weight:800;color:var(--dark)">Portfolio</a>
+ <a href="pakketten.html" style="margin-left:12px">Pakketten</a>
+      <a href="contact.html#contact" style="margin-left:12px">Contact</a>
+   
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-labelledby="portfolio-hero">
+      <h1 id="portfolio-hero">Portfolio</h1>
+      <p>Een selectie van demo‑sites en casebeschrijvingen. Klik op een project voor details of bekijk de live demo.</p>
+
+      <div class="filters" role="tablist" aria-label="Filter projecten">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">Alle</button>
+        <button class="filter-btn" data-filter="onepage">One‑page</button>
+        <button class="filter-btn" data-filter="webshop">Webshop</button>
+        <button class="filter-btn" data-filter="boeking">Boeking</button>
+      </div>
+    </section>
+<!-- Grid of projects -->
+<section aria-labelledby="projects-title" style="padding-top:18px">
+  <h2 id="projects-title" style="font-family:Poppins;text-align:center">Projecten</h2>
+
+<div class="grid" role="list" aria-live="polite">
+
+  <!-- Project 1 -->
+  <article class="card" tabindex="0" data-category="onepage" data-key="hoveniers">
+    <img src="/assets/portfolio-1.jpg" alt="">
+    <div class="meta">
+      <h3>Hoveniersbedrijf Demo</h3>
+      <p>One‑page portfolio met offerteformulier.</p>
+    </div>
+  </article>
+
+  <!-- Project 2 -->
+  <article class="card" tabindex="0" data-category="booking" data-key="kapper">
+    <img src="/assets/portfolio-2.jpg" alt="">
+    <div class="meta">
+      <h3>Kapper Studio Demo</h3>
+      <p>Reserveringssysteem en mobiele optimalisatie.</p>
+    </div>
+  </article>
+
+  <!-- Project 3 -->
+  <article class="card" tabindex="0" data-category="webshop" data-key="winkel">
+    <img src="/assets/portfolio-3.jpg" alt="">
+    <div class="meta">
+      <h3>Lokale Winkel Demo</h3>
+      <p>Productcatalogus en contactpagina.</p>
+    </div>
+  </article>
+
+  <!-- Project 4 -->
+  <article class="card" tabindex="0" data-category="onepage" data-key="coach">
+    <img src="/assets/portfolio-4.jpg" alt="">
+    <div class="meta">
+      <h3>Coaching Website Demo</h3>
+      <p>Rustige branding en conversiegerichte CTA’s.</p>
+    </div>
+  </article>
+
+  <!-- Project 5 -->
+  <article class="card" tabindex="0" data-category="booking" data-key="restaurant">
+    <img src="/assets/portfolio-5.jpg" alt="">
+    <div class="meta">
+      <h3>Restaurant Demo</h3>
+      <p>Menukaart en reserveringen.</p>
+    </div>
+  </article>
+
+  <!-- Project 6 -->
+  <article class="card" tabindex="0" data-category="onepage" data-key="marketing">
+    <img src="/assets/portfolio-6.jpg" alt="">
+    <div class="meta">
+      <h3>Marketing Agency Demo</h3>
+      <p>Strakke layout met dienstenoverzicht.</p>
+    </div>
+  </article>
+
+  <!-- Project 7 -->
+  <article class="card" tabindex="0" data-category="booking" data-key="fitness">
+    <img src="/assets/portfolio-7.jpg" alt="">
+    <div class="meta">
+      <h3>Fitness Studio Demo</h3>
+      <p>Schema’s, tarieven en boekingen.</p>
+    </div>
+  </article>
+
+  <!-- Project 8 -->
+  <article class="card" tabindex="0" data-category="onepage" data-key="aannemer">
+    <img src="/assets/portfolio-8.jpg" alt="">
+    <div class="meta">
+      <h3>Aannemersbedrijf Demo</h3>
+      <p>Projectoverzicht en diensten.</p>
+    </div>
+  </article>
+
+  <!-- Project 9 -->
+  <article class="card" tabindex="0" data-category="booking" data-key="fysio">
+    <img src="/assets/portfolio-9.jpg" alt="">
+    <div class="meta">
+      <h3>Fysiopraktijk Demo</h3>
+      <p>Behandelingen en afsprakenmodule.</p>
+    </div>
+  </article>
+
+  <!-- Project 10 -->
+  <article class="card" tabindex="0" data-category="onepage" data-key="fotograaf">
+    <img src="/assets/portfolio-10.jpg" alt="">
+    <div class="meta">
+      <h3>Fotograaf Portfolio Demo</h3>
+      <p>Fullscreen galerij en contactformulier.</p>
+    </div>
+  </article>
+
+  <!-- Project 11 -->
+  <article class="card" tabindex="0" data-category="booking" data-key="event">
+    <img src="/assets/portfolio-11.jpg" alt="">
+    <div class="meta">
+      <h3>Event Website Demo</h3>
+      <p>Tickets, programma en sprekers.</p>
+    </div>
+  </article>
+
+  <!-- Project 12 -->
+  <article class="card" tabindex="0" data-category="booking" data-key="consult">
+    <img src="/assets/portfolio-12.jpg" alt="">
+    <div class="meta">
+      <h3>Consultancy Demo</h3>
+      <p>Professionele uitstraling en cases.</p>
+    </div>
+  </article>
+
+</div>
+
+  </div>
+
+  <div class="cta-row">
+    <a class="btn" href="pakketten.html" style="background:transparent;color:var(--accent);border:1px solid rgba(15,98,254,0.12)">Bekijk pakketten</a>
+  </div>
+</section>
+  <footer>
+    <div class="container">
+      © <strong>Kasper Webstudio</strong> — Websites • Branding • Content — Enschede
+      <div style="margin-top:8px;color:var(--muted)">E‑mail: <a href="mailto:info@kasperwebstudio.nl">info@kasperwebstudio.nl</a> • Tel: 06‑0000‑0000</div>
+    </div>
+  </footer>
+
+  <!-- Modal for project details -->
+  <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <div class="modal-body">
+        <div id="modalImageArea">
+          <!-- image injected dynamically -->
+        </div>
+        <div class="modal-content" id="modalContentArea">
+          <h3 id="modalTitle">Project titel</h3>
+          <p id="modalDesc" class="small">Project omschrijving en resultaat.</p>
+          <div class="modal-meta" id="modalMeta">Levertijd: 3–5 dagen • Pakket: Starter</div>
+          <div style="margin-top:12px">
+            <a id="modalDemoLink" class="btn" href="#" target="_blank" rel="noopener">Bekijk demo</a>
+            <a id="modalContactLink" class="btn" href="index.html#contact" style="background:transparent;color:var(--accent);border:1px solid rgba(15,98,254,0.12);margin-left:8px">Vraag offerte</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeModal()" style="background:none;border:none;padding:8px;cursor:pointer;font-weight:700">Sluit</button>
+      </div>
+    </div>
+  </div>
+<script>
+  const projects = {
+    hoveniers: {
+      title: 'Hoveniersbedrijf Demo',
+      img: '/assets/portfolio-1.jpg',
+      desc: 'One‑page portfolio met offerteformulier en duidelijke CTA.',
+      meta: 'Levertijd: 3–5 dagen • Pakket: Starter',
+      demo: '#',
+      category: 'onepage'
+    },
+    kapper: {
+      title: 'Kapper Studio Demo',
+      img: '/assets/portfolio-2.jpg',
+      desc: 'Reserveringssysteem en mobiele optimalisatie.',
+      meta: 'Levertijd: 7–10 dagen • Pakket: Business',
+      demo: '#',
+      category: 'boeking'
+    },
+    winkel: {
+      title: 'Lokale Winkel Demo',
+      img: '/assets/portfolio-3.jpg',
+      desc: 'Productcatalogus en contactpagina met Google Maps integratie.',
+      meta: 'Levertijd: 7–10 dagen • Pakket: Business',
+      demo: '#',
+      category: 'webshop'
+    },
+    coach: {
+      title: 'Coaching Website Demo',
+      img: '/assets/portfolio-4.jpg',
+      desc: 'Rustige branding en conversiegerichte CTA’s.',
+      meta: 'Levertijd: 5–7 dagen • Pakket: Starter',
+      demo: '#',
+      category: 'onepage'
+    },
+    restaurant: {
+      title: 'Restaurant Demo',
+      img: '/assets/portfolio-5.jpg',
+      desc: 'Menukaart, reserveringen en mobiele optimalisatie.',
+      meta: 'Levertijd: 7–10 dagen • Pakket: Business',
+      demo: '#',
+      category: 'boeking'
+    },
+    marketing: {
+      title: 'Marketing Agency Demo',
+      img: '/assets/portfolio-6.jpg',
+      desc: 'Strakke layout met dienstenoverzicht.',
+      meta: 'Levertijd: 10–14 dagen • Pakket: Premium',
+      demo: '#',
+      category: 'onepage'
+    },
+    fitness: {
+      title: 'Fitness Studio Demo',
+      img: '/assets/portfolio-7.jpg',
+      desc: 'Schema’s, tarieven en boekingsopties.',
+      meta: 'Levertijd: 5–7 dagen • Pakket: Starter',
+      demo: '#',
+      category: 'boeking'
+    },
+    aannemer: {
+      title: 'Aannemersbedrijf Demo',
+      img: '/assets/portfolio-8.jpg',
+      desc: 'Projectoverzicht en contactflow.',
+      meta: 'Levertijd: 7–10 dagen • Pakket: Business',
+      demo: '#',
+      category: 'onepage'
+    },
+    fysio: {
+      title: 'Fysiopraktijk Demo',
+      img: '/assets/portfolio-9.jpg',
+      desc: 'Behandelingen, team en afsprakenmodule.',
+      meta: 'Levertijd: 7–10 dagen • Pakket: Business',
+      demo: '#',
+      category: 'boeking'
+    },
+    fotograaf: {
+      title: 'Fotograaf Portfolio Demo',
+      img: '/assets/portfolio-10.jpg',
+      desc: 'Minimalistisch portfolio met fullscreen galerij.',
+      meta: 'Levertijd: 3–5 dagen • Pakket: Starter',
+      demo: '#',
+      category: 'onepage'
+    },
+    event: {
+      title: 'Event Website Demo',
+      img: '/assets/portfolio-11.jpg',
+      desc: 'Tickets, programma en sprekers overzicht.',
+      meta: 'Levertijd: 10–14 dagen • Pakket: Premium',
+      demo: '#',
+      category: 'boeking'
+    },
+    consult: {
+      title: 'Consultancy Demo',
+      img: '/assets/portfolio-12.jpg',
+      desc: 'Professionele uitstraling met cases en contactflow.',
+      meta: 'Levertijd: 7–10 dagen • Pakket: Business',
+      demo: '#',
+      category: 'onepage'
+    }
+  };
+
+  // Klik op projectkaart → open modal
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => openModal(card.dataset.key));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card.dataset.key);
+      }
+    });
+  });
+
+  function openModal(key) {
+    const p = projects[key];
+    if (!p) return;
+
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalDesc').textContent = p.desc;
+    document.getElementById('modalMeta').textContent = p.meta;
+    document.getElementById('modalDemoLink').href = p.demo;
+
+    document.getElementById('modalImageArea').innerHTML =
+      `<img src="${p.img}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover">`;
+
+    const modal = document.getElementById('projectModal');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('projectModal');
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Filters
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterProjects(btn.dataset.filter);
+    });
+  });
+
+  function filterProjects(filter) {
+    document.querySelectorAll('.grid .card').forEach(card => {
+      const key = card.dataset.key;
+      const cat = projects[key].category;
+      card.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
+    });
+  }
+</script></body>
+</html>

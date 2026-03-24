@@ -1,0 +1,273 @@
+<!--
+  contact.html — Kasper Webstudio
+  INSTRUCTIES:
+  1) Plaats dit bestand in dezelfde map als index.html, pakketten.html, diensten.html en portfolio.html.
+  2) Vervang alle placeholders: /assets/logo.svg, /assets/contact-hero.jpg, info@kasperwebstudio.nl, 06-0000-0000.
+  3) Voor live formulierverzending: koppel het formulier aan je backend (zie JS comment) of gebruik de mailto-fallback.
+  4) Test mobiel en desktop; optimaliseer afbeeldingen naar WebP en voeg lazy loading toe indien gewenst.
+-->
+
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Kasper Webstudio</title>
+  <meta name="description" content="Contactpagina Kasper Webstudio — vraag een offerte aan of plan een kennismaking. Websites • Branding • Content." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f62fe;
+      --accent-2:#10b981;
+      --dark:#0b1220;
+      --card:#f8fafc;
+      --radius:12px;
+      --max-width:1100px;
+      --pad:28px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{max-width:var(--max-width);margin:0 auto;padding:var(--pad)}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6f9cff);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:Poppins;font-size:20px}
+    nav a{color:var(--muted);margin-left:16px;font-weight:600}
+
+    /* Hero */
+    .hero{display:flex;gap:28px;align-items:center;padding:36px 0;border-bottom:1px solid #f3f4f6}
+    .hero-left{flex:1;text-align:center}
+    .hero-left h1{font-family:Poppins;font-size:32px;margin:0 0 10px;line-height:1.02}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .hero-img{width:320px;border-radius:12px;overflow:hidden;flex-shrink:0}
+    .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Layout */
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:28px}
+    form{background:white;padding:20px;border-radius:12px;border:1px solid #f3f4f6;display:flex;flex-direction:column;gap:12px}
+    label{font-size:13px;color:var(--muted)}
+    input[type="text"],input[type="email"],textarea,select{
+      padding:12px;border-radius:8px;border:1px solid #e6edf3;font-size:14px;background:#fff;
+    }
+    textarea{min-height:140px;resize:vertical}
+    .small{font-size:13px;color:var(--muted)}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;background:var(--accent);color:white;font-weight:700;font-family:Poppins;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(15,98,254,0.12)}
+
+    /* Contact info card */
+    .info-card{background:linear-gradient(180deg,#fff,#fbfdff);padding:20px;border-radius:12px;border:1px solid #eef2ff}
+    .info-row{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .icon{width:44px;height:44px;border-radius:10px;background:#eef2ff;display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700}
+
+    /* Map placeholder */
+    .map{height:220px;background:#f8fafc;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);margin-top:12px;border:1px solid #eef2ff}
+
+    /* Small helpers */
+    .meta{font-size:13px;color:var(--muted)}
+    .legal{font-size:12px;color:var(--muted);margin-top:8px}
+
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f3f4f6;margin-top:36px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{flex-direction:column;align-items:center}
+      .grid{grid-template-columns:1fr}
+      .hero-img{width:100%;max-width:420px}
+    }
+    @media (max-width:640px){
+      header{padding:12px 0}
+      .logo{width:48px;height:48px}
+      .hero-left h1{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">KW</div>
+      <div>
+        <div style="font-weight:700">Kasper Webstudio</div>
+        <div style="font-size:13px;color:var(--muted)">Websites • Branding • Content</div>
+      </div>
+    </div>
+
+    <nav aria-label="Hoofdmenu">
+      <a href="kasperwebstudio.html">Home</a>
+      <a href="diensten.html" style="margin-left:12px">Diensten</a>
+   <a href="portfolio.html" style="margin-left:12px">Portfolio</a>
+      <a href="pakketten.html" style="margin-left:12px">Pakketten</a>
+      <a href="contact.html" style="margin-left:12px;font-weight:800;color:var(--dark)">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="contact-hero">
+      <div class="hero-left">
+        <h1 id="contact-hero">Laten we jouw website bouwen</h1>
+        <p class="small">Vul het formulier in of bel/mail direct. Ik reageer binnen 24 uur op aanvragen.</p>
+        <div style="margin-top:12px">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT GRID -->
+    <section style="padding-top:28px">
+      <div class="grid">
+        <!-- Form -->
+        <form id="contactForm" onsubmit="submitForm(event)" aria-label="Contactformulier" novalidate>
+          <div>
+            <label for="name">Naam</label>
+            <input id="name" name="name" type="text" required placeholder="Voornaam Achternaam" aria-required="true">
+          </div>
+
+          <div>
+            <label for="email">E‑mail</label>
+            <input id="email" name="email" type="email" required placeholder="naam@voorbeeld.nl" aria-required="true">
+          </div>
+
+          <div>
+            <label for="company">Bedrijf (optioneel)</label>
+            <input id="company" name="company" type="text" placeholder="Bedrijfsnaam">
+          </div>
+
+          <div>
+            <label for="service">Waar gaat het om?</label>
+            <select id="service" name="service" aria-label="Kies dienst">
+              <option value="starter">Starter pakket</option>
+              <option value="business">Business pakket</option>
+              <option value="premium">Premium / Maatwerk</option>
+              <option value="other">Anders / Vraag</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message">Bericht</label>
+            <textarea id="message" name="message" placeholder="Vertel kort wat je nodig hebt..." required aria-required="true"></textarea>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <button class="btn" type="submit">Verstuur aanvraag</button>
+            <button type="button" class="btn secondary" onclick="openMailto()">Mail direct</button>
+            <div class="small">Of bel: <strong style="color:var(--accent)">06‑0000‑0000</strong></div>
+          </div>
+
+          <div id="formMsg" class="small" style="color:var(--muted);margin-top:8px" role="status" aria-live="polite"></div>
+
+          <div class="legal">Door te verzenden ga je akkoord met onze <a href="privacy.html">privacyverklaring</a>.</div>
+        </form>
+
+        <!-- Info card -->
+        <aside class="info-card" aria-label="Contactinformatie">
+          <h3 style="margin-top:0;font-family:Poppins">Contactgegevens</h3>
+          <p class="small"><strong>E‑mail:</strong> <a href="mailto:kasperzakelijkond@gmail.com">kasperzakelijkond@gmail.com</a></p>
+          <p class="small"><strong>Telefoon:</strong> +31 6 51681221</p>
+
+          <div class="info-row" style="margin-top:12px">
+            <div class="icon" aria-hidden="true">📍</div>
+            <div>
+              <div style="font-weight:700">Hengelo</div>
+              <div class="meta">Online werkzaam in heel Nederland</div>
+            </div>
+          </div>
+
+          <hr style="border:none;border-top:1px solid #eef2ff;margin:14px 0">
+
+          <h4 style="margin:0 0 8px">Beschikbaar</h4>
+          <div class="small">Ma–Vr: 08:00 – 20:00<br>Za–Zo: op afspraak</div>
+
+          <div style="margin-top:12px">
+            <h4 style="margin:0 0 8px">Werkwijze (kort)</h4>
+            <ol style="padding-left:18px;margin:0;color:var(--muted)">
+              <li>Intake & strategie</li>
+              <li>Design & concept </li>
+              <li>Ontwikkeling & optimalisatie</li>
+              <li>Livegang & nazorg</li>
+            </ol>
+          </div>
+
+          <div style="margin-top:14px">
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <strong>Kasper Webstudio</strong> — Websites • Branding • Content — Enschede
+      <div style="margin-top:8px;color:var(--muted)">E‑mail: <a href="mailto:info@kasperwebstudio.nl">info@kasperwebstudio.nl</a> • Tel: 06‑0000‑0000</div>
+    </div>
+  </footer>
+
+  <script>
+    // Client-side form handling with mailto fallback
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
+      const formMsg = document.getElementById('formMsg');
+
+      // Basic validation
+      if(!name || !email || !message){
+        formMsg.style.color = 'crimson';
+        formMsg.textContent = 'Vul alle verplichte velden in.';
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailRegex.test(email)){
+        formMsg.style.color = 'crimson';
+        formMsg.textContent = 'Voer een geldig e‑mailadres in.';
+        return;
+      }
+
+      formMsg.style.color = 'var(--muted)';
+      formMsg.textContent = 'Versturen...';
+
+      // Simulate sending (replace with real backend)
+      setTimeout(() => {
+        formMsg.style.color = 'green';
+        formMsg.textContent = 'Bedankt! Je aanvraag is verzonden. Ik neem binnen 24 uur contact op.';
+        document.getElementById('contactForm').reset();
+      }, 900);
+
+      /* BACKEND INTEGRATIE (aanbevolen):
+         Vervang de simulatie hierboven met een fetch POST naar jouw endpoint, bijvoorbeeld:
+         fetch('/api/contact', {
+           method: 'POST',
+           headers: {'Content-Type': 'application/json'},
+           body: JSON.stringify({name,email,company,service,message})
+         })
+         .then(r => r.json()).then(res => { /* handle success */ })
+         .catch(err => { formMsg.style.color='crimson'; formMsg.textContent='Er is iets misgegaan.' });
+
+         Als je geen backend hebt, kun je de mailto fallback gebruiken (zie openMailto()).
+      */
+    }
+
+    // Mailto fallback: opent e-mailclient met ingevulde inhoud
+    function openMailto(){
+      const name = encodeURIComponent(document.getElementById('name').value.trim() || '');
+      const email = encodeURIComponent(document.getElementById('email').value.trim() || '');
+      const company = encodeURIComponent(document.getElementById('company').value.trim() || '');
+      const service = encodeURIComponent(document.getElementById('service').value || '');
+      const message = encodeURIComponent(document.getElementById('message').value.trim() || '');
+      const subject = encodeURIComponent(`Website aanvraag — ${service}`);
+      const body = `Naam: ${name}%0AEmail: ${email}%0ABedrijf: ${company}%0A%0ABericht:%0A${message}`;
+      window.location.href = `mailto:info@kasperwebstudio.nl?subject=${subject}&body=${body}`;
+    }
+
+    // Accessibility: focus first invalid field on submit attempt (optional)
+    document.getElementById('contactForm').addEventListener('invalid', function(e){
+      e.preventDefault();
+      e.target.focus();
+    }, true);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kasper Webstudio — Websites • Branding • Marketing </title>
+  <meta name="description" content="Kasper Webstudio maakt professionele, snelle en conversiegerichte websites voor bedrijven. Heldere pakketten: Starter, Business, Premium." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f62fe;
+      --accent-2:#10b981;
+      --dark:#0b1220;
+      --card:#f8fafc;
+      --radius:12px;
+      --max-width:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Layout */
+    .container{max-width:var(--max-width);margin:0 auto;padding:48px 24px;}
+    header{display:flex;align-items:center;justify-content:space-between;padding:28px 24px;background:transparent}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6f9cff);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:Poppins, Inter;font-size:20px;
+      box-shadow:0 6px 20px rgba(15,98,254,0.12);
+    }
+    .brand h1{font-size:18px;margin:0;font-weight:700;font-family:Poppins}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:var(--dark)}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:48px;
+      align-items:center;
+      padding:48px 0;
+    }
+    .hero-left h2{font-family:Poppins;font-size:36px;margin:0 0 12px}
+    .hero-left p{color:var(--muted);margin:0 0 20px;font-size:16px}
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{
+      display:inline-block;padding:12px 18px;border-radius:10px;background:var(--accent);color:white;font-weight:700;text-decoration:none;
+      box-shadow:0 8px 30px rgba(15,98,254,0.12);
+    }
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(15,98,254,0.12);font-weight:600}
+
+    .hero-right{
+      background:linear-gradient(180deg, rgba(15,98,254,0.06), rgba(16,185,129,0.03));
+      border-radius:14px;padding:22px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.04);
+    }
+    .feature-list{display:flex;flex-direction:column;gap:12px}
+    .feature{
+      background:white;padding:14px;border-radius:10px;display:flex;gap:12px;align-items:center;border:1px solid #f1f5f9;
+    }
+    .feature .icon{width:44px;height:44px;border-radius:8px;background:var(--card);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+
+    /* Sections */
+    section{padding:48px 0;border-top:1px solid #f3f4f6}
+    section h3{font-family:Poppins;margin:0 0 12px;font-size:22px}
+    section p.lead{color:var(--muted);margin:0 0 20px}
+
+    /* Diensten */
+    .diensten-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .dienst{
+      background:white;padding:22px;border-radius:12px;border:1px solid #f3f4f6;
+      min-height:140px;display:flex;flex-direction:column;gap:10px;
+    }
+    .dienst h4{margin:0;font-size:16px;color:var(--dark);font-weight:700}
+    .dienst p{margin:0;color:var(--muted);font-size:14px;flex:1}
+
+    /* Portfolio */
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project{background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;overflow:hidden;border:1px solid #eef2ff}
+    .project img{width:100%;height:180px;object-fit:cover;display:block}
+    .project .meta{padding:14px}
+    .project h5{margin:0 0 6px;font-size:15px}
+    .project p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Pakketten */
+    .packages{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .package{background:white;padding:22px;border-radius:12px;border:1px solid #f3f4f6;display:flex;flex-direction:column;gap:12px}
+    .package .price{font-size:20px;font-weight:800;color:var(--accent)}
+    .package ul{margin:0;padding-left:18px;color:var(--muted)}
+    .package .cta{margin-top:auto}
+
+    /* Reviews */
+    .reviews{display:flex;flex-direction:column;gap:12px}
+    .review{background:white;padding:18px;border-radius:12px;border:1px solid #f3f4f6;display:flex;gap:12px;align-items:flex-start}
+    .avatar{width:48px;height:48px;border-radius:10px;background:#eef2ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
+    form{background:white;padding:22px;border-radius:12px;border:1px solid #f3f4f6;display:flex;flex-direction:column;gap:12px}
+    label{font-size:13px;color:var(--muted)}
+    input[type="text"],input[type="email"],textarea,select{
+      padding:12px;border-radius:8px;border:1px solid #e6edf3;font-size:14px;background:#fff;
+    }
+    textarea{min-height:140px;resize:vertical}
+    .contact-info{background:linear-gradient(180deg,#fff,#fbfdff);padding:22px;border-radius:12px;border:1px solid #eef2ff}
+    .small{font-size:13px;color:var(--muted)}
+
+    footer{padding:28px 24px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .diensten-grid,.portfolio-grid,.packages{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      header{padding:18px}
+      .container{padding:24px 16px}
+      .diensten-grid,.portfolio-grid,.packages{grid-template-columns:1fr}
+      .hero-left h2{font-size:26px}
+      .logo{width:48px;height:48px;font-size:18px}
+}.hyper-center {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.word-display {
+  font-size: clamp(2rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(40px) scale(0.7);
+  animation: hyperIn 0.1s ease-out forwards;
+}
+
+@keyframes hyperIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.7);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(0) scale(1.2);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.9);
+  }
+}
+
+.hyper-cta {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+}.hero-background-wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Achtergrond website */
+.fake-website-bg {
+  position: absolute;
+  inset: 8%;
+  background: #f4f4f7;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  opacity: 0.55;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+/* Header */
+.fw-header {
+  height: 45px;
+  background: linear-gradient(90deg, #ddd, #eee);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Body layout */
+.fw-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+}
+
+/* Sidebar */
+.fw-sidebar {
+  background: #e3e3e8;
+  border-radius: 12px;
+}
+
+/* Content area */
+.fw-content {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Cards */
+.fw-card {
+  background: #f1f1f6;
+  border-radius: 10px;
+  height: 120px;
+}
+
+/* Hero erboven */
+.hero {
+  position: relative;
+  z-index: 3;
+}/* Lightbox achtergrond */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Grote afbeelding */
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Sluit-knop */
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  color: #ff4444;
+}.portfolio-img {
+  cursor: pointer;
+}.package.disabled {
+  opacity: 0.45;
+  filter: grayscale(100%);
+  pointer-events: none; /* maakt klikken onmogelijk */
+  position: relative;
+}
+
+.package.disabled::after {
+  content: "Niet beschikbaar";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #b91c1c;
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}/* Sectie */
+.reviews-section {
+  margin-top: 3rem;
+}
+
+.reviews-section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.reviews-section .lead {
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+/* Slider container */
+.review-slider {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Track die schuift */
+.review-track {
+  display: flex;
+  gap: 1rem;
+  animation: slide-left 25s linear infinite;
+}
+
+/* Review kaart */
+.review {
+  min-width: 320px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  padding: 1.2rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #374151, #1f2937);
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 1.1rem;
+  margin: 0.3rem 0 0.6rem;
+  letter-spacing: 1px;
+}
+
+.review-text {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Animatie */
+@keyframes slide-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}/* Review kaart smaller en wit */
+.review {
+  min-width: 260px;        /* was 320px → nu smaller */
+  max-width: 260px;        /* zorgt dat ze niet breder worden */
+  background: #ffffff;     /* witte achtergrond */
+  border: 1px solid #e5e7eb;
+  padding: 1.2rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+  color: #111827;          /* donkere tekst op wit */
+}
+
+/* Tekstkleuren aanpassen voor witte achtergrond */
+.review-text {
+  color: #374151;
+}
+
+.date {
+  color: #6b7280;
+}
+
+.stars {
+  color: #fbbf24;
+}/* Review kaart smaller en wit */
+.review {
+  width: 260px;            /* vaste breedte */
+  min-width: 260px;
+  max-width: 260px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 1.2rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+  color: #111827;
+  box-sizing: border-box;  /* voorkomt overflow */
+  overflow: hidden;        /* tekst blijft binnen de kaart */
+}
+
+/* Tekstkleuren */
+.review-text {
+  color: #374151;
+  word-wrap: break-word;   /* breekt lange woorden */
+}
+
+.date {
+  color: #6b7280;
+}
+
+.stars {
+  color: #fbbf24;
+}.review {
+  display: flex;
+  flex-direction: column;   /* alles onder elkaar */
+  align-items: flex-start;  /* links uitlijnen */
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 1.2rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #111827;
+}
+
+.stars {
+  display: block;
+  margin: 0.25rem 0 0.5rem; /* ruimte boven/onder */
+  color: #fbbf24;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.review-text {
+  display: block;
+  color: #374151;
+  word-wrap: break-word;
+}.google-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.google-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+}
+
+.google-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.google-rating {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.google-stars {
+  color: #fbbf24;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.google-count {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+  </style>
+</head>
+<body><!-- LIGHTBOX OVERLAY -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="close-btn">&times;</span>
+  <img id="lightbox-img" class="lightbox-img">
+</div>
+
+  <header>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:0">
+      <div class="brand">
+        <div class="logo">KW</div>
+        <div>
+          <h1>Kasper Webstudio</h1>
+          <div class="small">Websites • Branding • Content</div>
+        </div>
+      </div>
+
+      <nav aria-label="Hoofdmenu">
+        <a href="diensten.html">Diensten</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="pakketten.html">Pakketten</a>
+        <a href="#reviews">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO --><section class="hero-background-wrapper">
+  
+  <!-- Zelfgemaakte website achtergrond -->
+  <div class="fake-website-bg">
+    <div class="fw-header"></div>
+    <div class="fw-body">
+      <div class="fw-sidebar"></div>
+      <div class="fw-content">
+        <div class="fw-card"></div>
+        <div class="fw-card"></div>
+        <div class="fw-card"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOUW hero blijft hier -->
+  <section class="hero hyper-center">
+    <div id="word-display" class="word-display">Meer Aanvragen</div>
+
+    <div class="cta-row hyper-cta">
+      <a class="btn" href="offerte.html"> Gratis offerte aanvragen</a>
+      <a class="btn secondary" href="pakketten.html">Bekijk pakketten</a>
+    </div>
+  </section>
+
+</section>
+
+
+</section>
+    <!-- DIENSTEN -->
+    <section id="diensten" aria-labelledby="diensten-title">
+      <h3 id="diensten-title">Diensten</h3>
+      <p class="lead">Complete service van concept tot livegang. Kies wat je nodig hebt of vraag een gratis demo aan.</p>
+
+      <div class="diensten-grid" role="list">
+        <article class="dienst" role="listitem">
+          <h4>Website ontwikkeling</h4>
+          <p>Responsive HTML/CSS websites, geoptimaliseerd voor snelheid en conversie. Van one‑page tot uitgebreide bedrijfswebsite.</p>
+        </article>
+
+        <article class="dienst" role="listitem">
+          <h4>Branding & design</h4>
+          <p>Logo, kleurenpalet en typografie die jouw merk herkenbaar en professioneel maken, consistent op website en socials.</p>
+        </article>
+
+        <article class="dienst" role="listitem">
+          <h4>Content & copy</h4>
+          <p>Heldere, verkoopgerichte teksten en content‑templates voor je homepage, dienstenpagina en social posts.</p>
+        </article>
+
+        <article class="dienst" role="listitem">
+          <h4>Onderhoud & revisies</h4>
+          <p>Afhankelijk van je gekozen pakket krijgt de website maandelijkse onderhoud en 1 tot 3 revisierondes</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" aria-labelledby="portfolio-title">
+      <h3 id="portfolio-title">Portfolio</h3>
+      <p class="lead">Een selectie van recente projecten. Klik voor meer informatie. </p>
+
+      <div class="portfolio-grid" role="list">
+        <div class="project" role="listitem">
+        <img src=OERTHEL.png class="portfolio-img" onclick="openLightbox(this.src)">
+          <div class="meta">
+            <h5>ØERTHELBAGS</h5>
+            <p>Moderne one‑page webshop voor een luxe tassenmerk met emotionele waarde.</p>
+          </div>
+        </div>
+
+        <div class="project" role="listitem">
+      <img src= marketingkits.png class="portfolio-img" onclick="openLightbox(this.src)">
+          <div class="meta">
+            <h5>Marketingkitsnl</h5>
+            <p>SEO geoptimaliseerde moderne landingspagina met een downloadbare Lead magnet en reviews.</p>
+          </div>
+        </div>
+
+        <div class="project" role="listitem">
+   <img src= barbershop.png class="portfolio-img" onclick="openLightbox(this.src)">
+          <div class="meta">
+            <h5>Classic Cuts demo</h5>
+            <p>Frisse duidelijke barbershop demo website voor Classic Cuts. Diensten, prijslijst, openingstijden & Locatie, Afspraakformulier en Reviews.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAKKETTEN -->
+    <section id="pakketten" aria-labelledby="pakketten-title">
+      <h3 id="pakketten-title">Pakketten</h3>
+      <p class="lead">Eenvoudige, transparante prijzen. Kies een pakket of vraag een maatwerk aan. </p>
+
+      <div class="packages" role="list">
+        <div class="package" role="listitem" aria-labelledby="starter-title">
+          <div>
+            <h4 id="starter-title">Starter</h4>
+            <div class="price">€395 opzetkosten, + €30 / maand</div>
+            <p class="small">Perfect voor zzp'ers en kleine bedrijven die snel online willen.</p>
+            <ul>
+              <li>1–3 pagina's (Home, Diensten, Contact)</li>
+              <li>Responsive HTML/CSS</li>
+              <li>Contactformulier & basis SEO</li>
+              <li>1 revisieronde</li>
+            </ul>
+          </div>
+          <div class="cta">
+            <a class="btn" href="Starter.html">Bestellen</a>
+          </div>
+        </div>
+
+<div class="package disabled" role="listitem" aria-labelledby="business-title">
+  <div>
+    <h4 id="business-title">Business</h4>
+    <div class="price">€795 opzetkosten + €45 / maand</div>
+    <p class="small">Voor groeiende bedrijven met portfolio en extra pagina's.</p>
+    <ul>
+      <li>4–7 pagina's</li>
+      <li>Portfolio & case pages</li>
+      <li>2 revisierondes</li>
+      <li>Laadtijd optimalisatie</li>
+    </ul>
+  </div>
+  <div class="cta">
+    <a class="btn" href="Business.html">Bestellen</a>
+  </div>
+</div>
+
+<div class="package disabled" role="listitem" aria-labelledby="premium-title">
+  <div>
+    <h4 id="premium-title">Premium</h4>
+    <div class="price">€1.495 opzetkosten + 74,99 / maand </div>
+    <p class="small">Maatwerk, extra functionaliteit en content‑support.</p>
+    <ul>
+      <li>Maatwerkdesign & development</li>
+      <li>Content‑support (tekst & beeld)</li>
+      <li>3 revisierondes + training</li>
+      <li>Optionele hosting & onderhoud</li>
+    </ul>
+  </div>
+  <div class="cta">
+    <a class="btn" href="Premium.html">Bestellen</a>
+  </div>
+</div>
+    </section>
+
+    <!-- REVIEWS -->
+<section id="reviews" class="reviews-section">
+  <h3>Reviews</h3><div class="google-header">
+ <img src="https://www.google.com/images/branding/product/ico/googleg_lodp.ico" 
+     alt="Google logo" class="google-logo">
+  <div class="google-info">
+    <div class="google-rating">4.9</div>
+    <div class="google-stars">★★★★★</div>
+    <div class="google-count">Gebaseerd op 27 reviews</div>
+  </div>
+</div>
+  <p class="lead">Wat klanten zeggen over mijn websites en diensten. </p>
+
+  <div class="review-slider">
+    <div class="review-track">
+
+      <!-- Review 1 -->
+      <div class="review">
+        <div class="review-header">
+          <div class="avatar"></div>
+          <div>
+            <strong>Sanne Jansen</strong>
+            <div class="date">2 weken geleden</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">
+          Kasper heeft mijn volledige website gebouwd en ik ben supertevreden. Duidelijk, snel en professioneel.
+        </p>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review">
+        <div class="review-header">
+          <div class="avatar"></div>
+          <div>
+            <strong>Mark de Groot</strong>
+            <div class="date">1 maand geleden</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">
+          Strakke website voor mijn bedrijf. Alles werk snel en ziet er goed uit. Echt topservice. 
+        </p>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review">
+        <div class="review-header">
+          <div class="avatar"></div>
+          <div>
+            <strong>Lotte Vermeer</strong>
+            <div class="date">3 maanden geleden</div>
+          </div>
+        </div>
+        <div class="stars">★★★★☆</div>
+        <p class="review-text">
+          Heel blij mee!!!
+        </p>
+      </div>
+<!-- Review -->
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Google gebruiker</strong>
+      <div class="date">1 week geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Heel blij met mijn nieuwe website.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Mila van der Meer</strong>
+      <div class="date">2 weken geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Professioneel, duidelijk en superstrak resultaat. krijg veel meer traffic</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Ruben Vos</strong>
+      <div class="date">3 weken geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Binnen een week stond mijn hele website live. en weer wat nieuws geleerd over coderen!.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Sophie Willems</strong>
+      <div class="date">1 maand geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★☆</div>
+  <p class="review-text">Goede communicatie en een modern ontwerp. Zeker aan te raden.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Tim van Loon</strong>
+      <div class="date">1 maand geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">supernice maat.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Google gebruiker</strong>
+      <div class="date">1 maand geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Heel prettig samenwerken. en mooi website.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Joris van Dam</strong>
+      <div class="date">2 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">werkt perfect op mobiel.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Nina de Bruin</strong>
+      <div class="date">2 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Ik kreeg precies wat ik wilde, zonder gedoe. Topservice.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Lars Hendriks</strong>
+      <div class="date">2 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Kasper heeft mijn oude site volledig vernieuwd wat een verschil.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Fleur Jacobs</strong>
+      <div class="date">3 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★☆</div>
+  <p class="review-text">Goede prijs en snelle oplevering en mooi design</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Google gebruiker</strong>
+      <div class="date">3 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">superblij met mn nieuwe site, bedankt Kasper.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Lotte van Rijn</strong>
+      <div class="date">3 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">echt topsite gekregen</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Kevin de Groot</strong>
+      <div class="date">4 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">site laadt snel, doet wat die moet doen. geweldig@</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Sanne Mulder</strong>
+      <div class="date">4 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Branding perfect doorgevoerd in de website. Heel professioneel.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Jelle Smit</strong>
+      <div class="date">4 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Previews tussendoor en makkelijk feedback geven. Fijne werkwijze.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Amber van Dijk</strong>
+      <div class="date">5 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Mijn portfolio ziet er eindelijk professioneel uit. Heel blij mee.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Tom van der Wal</strong>
+      <div class="date">5 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★☆</div>
+  <p class="review-text">Goede uitleg over het CMS. Ik kan nu zelf dingen aanpassen.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Romy Gerritsen</strong>
+      <div class="date">5 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">De website werkt perfect op mobiel en tablet. Heel belangrijk voor mij.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Stefan de Boer</strong>
+      <div class="date">6 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Kasper levert kwaliteit en houdt zich aan afspraken.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Kim van Vliet</strong>
+      <div class="date">6 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Mijn bedrijf oogt nu veel professioneler dankzij de nieuwe site.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Noah van Leeuwen</strong>
+      <div class="date">6 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Heel tevreden met het eindresultaat. Zeker de investering waard.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Iris Peeters</strong>
+      <div class="date">7 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Kasper dacht mee over structuur en teksten. Dat hielp enorm.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Rick van der Linden</strong>
+      <div class="date">7 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">De site is snel, overzichtelijk en mooi. Precies wat ik wilde.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Marit de Jong</strong>
+      <div class="date">7 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Ik kreeg veel complimenten van klanten over de nieuwe website.</p>
+</div>
+
+<div class="review">
+  <div class="review-header">
+    <div class="avatar"></div>
+    <div>
+      <strong>Jasper Willemsen</strong>
+      <div class="date">8 maanden geleden</div>
+    </div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="review-text">Heldere communicatie en een strak eindresultaat. Ik kom zeker terug.</p>
+</div>
+    </div>
+  </div>
+<section id="contact" aria-labelledby="contact-title">
+  <h3 id="contact-title">Contact</h3>
+  <p class="lead">Klaar om te starten? Vul het formulier in of stuur direct een e‑mail / bel.</p>
+
+  <div class="contact-grid">
+<!-- FORM -->
+<form 
+  id="contactForm"
+  action="#contact"
+  method="POST"
+  aria-label="Contactformulier"
+>
+  <div>
+    <label for="name">Naam</label>
+    <input id="name" name="name" type="text" required placeholder="Voornaam Achternaam">
+  </div>
+
+  <div>
+    <label for="email">E‑mail</label>
+    <input id="email" name="email" type="email" required placeholder="naam@voorbeeld.nl">
+  </div>
+
+  <div>
+    <label for="company">Bedrijf (optioneel)</label>
+    <input id="company" name="company" type="text" placeholder="Bedrijfsnaam">
+  </div>
+
+  <div>
+    <label for="package">Pakket</label>
+    <select id="package" name="package">
+      <option value="starter">Starter — €395 + 30 p/m</option>
+      <option value="business" disabled>Business — €795 + 45 p/m (niet beschikbaar)</option>
+      <option value="premium" disabled>Premium — vanaf €1.495 + 74,99 p/m (niet beschikbaar)</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="message">Bericht</label>
+    <textarea id="message" name="message" placeholder="Vertel kort wat je nodig hebt..." required></textarea>
+  </div>
+
+  <!-- BELANGRIJK: GEEN _redirect MEER -->
+
+  <input type="hidden" name="_subject" value="Nieuwe aanvraag via je website">
+
+  <div style="display:flex;gap:12px;align-items:center">
+    <button class="btn" type="submit">Verstuur aanvraag</button>
+    <div class="small">Of bel: <strong style="color:var(--accent)">+31 6 51681221</strong></div>
+  </div>
+
+  <div id="formMsg" class="small" style="color:var(--muted);margin-top:8px"></div>
+</form>
+
+<!-- ASIDE -->
+<aside class="contact-info" aria-hidden="false">
+  <h4 style="margin-top:0">Kasper Webstudio</h4>
+  <p class="small">Websites • Branding • Content</p>
+  <p class="small"><strong>E‑mail:</strong> <a href="mailto:info@kasperwebstudio.nl">info@kasperwebstudio.nl</a></p>
+  <p class="small"><strong>Telefoon:</strong> +31 6 51681221</p>
+
+  <hr style="border:none;border-top:1px solid #eef2ff;margin:12px 0">
+
+  <p class="small"><strong>Werkwijze</strong></p>
+  <ol style="padding-left:18px;margin:0;color:var(--muted)">
+    <li>Intake & offerte</li>
+    <li>Design voorstel</li>
+    <li>Ontwikkeling & review</li>
+    <li>Oplevering & nazorg</li>
+  </ol>
+</aside>
+<footer>
+    <div class="container" style="padding:18px 24px;text-align:center">
+      © <strong>Kasper Webstudio</strong> — Websites • Branding • Content - Nederland
+    </div>
+  </footer>
+
+  <script>
+    // Eenvoudige formulierverwerking (client-side). Vervang met echte backend of e-mail integratie.
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pkg = document.getElementById('package').value;
+      const message = document.getElementById('message').value.trim();
+      const formMsg = document.getElementById('formMsg');
+
+      if(!name || !email || !message){
+        formMsg.textContent = 'Vul alle verplichte velden in.';
+        return;
+      }
+
+      // Simuleer verzending
+      formMsg.style.color = 'var(--muted)';
+      formMsg.textContent = 'Versturen...';
+
+      setTimeout(() => {
+        formMsg.style.color = 'green';
+        formMsg.textContent = 'Bedankt! Je aanvraag is verzonden. Ik neem binnen 24 uur contact op.';
+        document.getElementById('contactForm').reset();
+
+        // Optioneel: open mailto als fallback
+        // const mailto = `mailto:info@kasperwebstudio.nl?subject=Website aanvraag (${pkg})&body=Naam: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0ABericht: ${encodeURIComponent(message)}`;
+        // window.location.href = mailto;
+      }, 900);
+    }
+  </script>
+</body></script>
+</body>
+
+<script>
+const words = [
+  "Meer Aanvragen?",
+  "Meer Boekingen?",
+  "Meer Conversies?",
+  "Meer Leads?",
+  "Meer Omzet?",
+  "Meer Resultaat?",
+  "Meer Zichtbaarheid?",
+  "Meer Bereik?",
+  "Meer Vertrouwen?",
+  "Meer Succes?",
+  "Meer Leads?"
+];
+
+let index = 0;
+const el = document.getElementById("word-display");
+
+function showNextWord() {
+  el.textContent = words[index];
+  el.style.animation = "none";
+  void el.offsetWidth; // reset animation
+  el.style.animation = "hyperIn 1.0s ease-out forwards";
+
+  index = (index + 1) % words.length;
+}
+
+showNextWord();
+setInterval(showNextWord, 950);
+</script>
+
+<script>
+function openLightbox(src) {
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+</script>
+</html>

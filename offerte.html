@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Offerte aanvragen — Kasper Webstudio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --muted:#6b7280;
+  --accent:#0f62fe;
+  --accent-2:#10b981;
+  --dark:#0b1220;
+  --card:#f8fafc;
+  --radius:12px;
+  --max-width:900px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, system-ui;
+  background:var(--bg);
+  color:var(--dark);
+}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:48px 24px;}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 24px;
+}
+
+.logo{
+  width:50px;height:50px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),#6f9cff);
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:700;
+}
+
+h1{font-family:Poppins;margin:0;font-size:20px}
+
+.hero{
+  text-align:center;
+  padding:40px 0;
+}
+
+.hero h2{
+  font-family:Poppins;
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+}
+
+form{
+  background:white;
+  padding:28px;
+  border-radius:12px;
+  border:1px solid #eef2ff;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.03);
+}
+
+label{
+  font-size:13px;
+  color:var(--muted);
+}
+
+input, select, textarea{
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #e6edf3;
+  font-size:14px;
+}
+
+textarea{min-height:140px}
+
+.btn{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:var(--accent);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.summary{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #eef2ff;
+}
+
+.price{
+  font-size:22px;
+  font-weight:800;
+  color:var(--accent);
+}
+
+footer{
+  text-align:center;
+  padding:24px;
+  color:var(--muted);
+}.extra-group {
+  margin-top: 10px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+.extra-group label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="container">
+  <div style="display:flex;gap:12px;align-items:center;">
+    <div class="logo">KW</div>
+    <div>
+      <h1>Kasper Webstudio</h1>
+      <div style="font-size:13px;color:var(--muted)">Offerte aanvragen</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <h2>Vraag jouw offerte aan</h2>
+    <p>Vul het formulier in en bereken je offerteprijs. </p>
+  </section>
+
+  <form id="offerteForm">
+
+    <div>
+      <label>Naam</label>
+      <input type="text" required placeholder="Voornaam Achternaam">
+    </div>
+
+    <div>
+      <label>E-mail</label>
+      <input type="email" required placeholder="naam@email.nl">
+    </div>
+
+    <div>
+      <label>Bedrijf</label>
+      <input type="text" placeholder="Optioneel">
+    </div>
+
+    <div>
+      <label>Pakket</label>
+      <select id="pakket">
+        <option value="395">Starter (€395)</option>
+        <option value="795">Business (€795)</option>
+        <option value="1495">Premium (€1495)</option>
+      </select>
+    </div>
+
+<div>
+  <label>Extra opties</label>
+
+  <!-- Starter -->
+  <div class="extra-group" data-pakket="395">
+    <label><input type="checkbox" class="extra" data-price="54.95"> Extra pagina – €54,95</label>
+    <label><input type="checkbox" class="extra" data-price="95"> Copywriting per pagina – €95</label>
+    <label><input type="checkbox" class="extra" data-price="249"> Copywriting bundel – €249</label>
+    <label><input type="checkbox" class="extra" data-price="195"> SEO pakket – €195</label>
+    <label><input type="checkbox" class="extra" data-price="149"> Logo ontwerp – €149</label>
+    <label><input type="checkbox" class="extra" data-price="25"> Social media koppelingen – €25</label>
+    <label><input type="checkbox" class="extra" data-price="95"> Blogmodule – €95</label>
+    <label><input type="checkbox" class="extra" data-price="150"> Meertaligheid – €150</label>
+    <label><input type="checkbox" class="extra" data-price="295"> Webshop (basis) – €295</label>
+    <label><input type="checkbox" class="extra" data-price="109.99"> Spoedoplevering – €109,99</label>
+  </div>
+
+  <!-- Business -->
+  <div class="extra-group" data-pakket="795" style="display:none">
+    <label><input type="checkbox" class="extra" data-price="54.95"> Extra pagina – €54,95</label>
+    <label><input type="checkbox" class="extra" data-price="49"> FAQ module – €49</label>
+    <label><input type="checkbox" class="extra" data-price="25"> Extra PDF – €25</label>
+    <label><input type="checkbox" class="extra" data-price="195"> Uitgebreid SEO pakket – €195</label>
+    <label><input type="checkbox" class="extra" data-price="95"> Copywriting per pagina – €95</label>
+    <label><input type="checkbox" class="extra" data-price="249"> Copywriting bundel – €249</label>
+    <label><input type="checkbox" class="extra" data-price="7"> Stockfoto’s – €7</label>
+    <label><input type="checkbox" class="extra" data-price="35"> Extra revisieronde – €35</label>
+    <label><input type="checkbox" class="extra" data-price="95"> Spoedoplevering – €95</label>
+    <label><input type="checkbox" class="extra" data-price="12"> Domeinregistratie – €12</label>
+    <label><input type="checkbox" class="extra" data-price="2.5"> Extra mailbox – €2,50</label>
+    <label><input type="checkbox" class="extra" data-price="295"> Webshop (basis) – €295</label>
+    <label><input type="checkbox" class="extra" data-price="149"> Meertaligheid – €149</label>
+  </div>
+
+  <!-- Premium -->
+  <div class="extra-group" data-pakket="1495" style="display:none">
+    <label><input type="checkbox" class="extra" data-price="54.95"> Extra pagina – €54,95</label>
+    <label><input type="checkbox" class="extra" data-price="25"> Extra tool integratie – €25</label>
+    <label><input type="checkbox" class="extra" data-price="25"> Extra PDF – €25</label>
+    <label><input type="checkbox" class="extra" data-price="45"> Extra video sectie – €45</label>
+    <label><input type="checkbox" class="extra" data-price="35"> Extra carrousel – €35</label>
+    <label><input type="checkbox" class="extra" data-price="95"> SEO blogartikel – €95</label>
+    <label><input type="checkbox" class="extra" data-price="295"> Uitgebreid SEO pakket – €295</label>
+    <label><input type="checkbox" class="extra" data-price="95"> Copywriting per pagina – €95</label>
+    <label><input type="checkbox" class="extra" data-price="249"> Copywriting bundel – €249</label>
+    <label><input type="checkbox" class="extra" data-price="7"> Stockfoto’s – €7</label>
+    <label><input type="checkbox" class="extra" data-price="35"> Extra revisieronde – €35</label>
+    <label><input type="checkbox" class="extra" data-price="125"> Spoedlevering – €125</label>
+    <label><input type="checkbox" class="extra" data-price="195"> Super‑spoed – €195</label>
+    <label><input type="checkbox" class="extra" data-price="12"> Domeinregistratie – €12</label>
+    <label><input type="checkbox" class="extra" data-price="2.5"> Extra mailbox – €2,50</label>
+    <label><input type="checkbox" class="extra" data-price="3"> Extra opslagruimte – €3</label>
+    <label><input type="checkbox" class="extra" data-price="149"> Branding – €149</label>
+    <label><input type="checkbox" class="extra" data-price="49"> Social media templates – €49</label>
+    <label><input type="checkbox" class="extra" data-price="295"> Webshop (basis) – €295</label>
+    <label><input type="checkbox" class="extra" data-price="149"> Meertaligheid – €149</label>
+  </div>
+</div>
+
+    <div>
+      <label>Bericht</label>
+      <textarea placeholder="Vertel wat je nodig hebt..."></textarea>
+    </div>
+
+    <div class="summary">
+      <div>Geschatte prijs:</div>
+      <div class="price" id="prijs">€395</div>
+    </div>
+
+    <button class="btn" type="submit">Offerte aanvragen</button>
+
+    <div id="msg" style="font-size:13px;color:var(--muted)"></div>
+
+  </form>
+
+</main>
+
+<footer>
+  © Kasper Webstudio
+</footer>
+
+<script>
+const pakketSelect = document.getElementById("pakket");
+const prijsEenmaligEl = document.getElementById("prijs"); // jouw bestaande element
+let maandEl = document.getElementById("prijsMaand");
+
+// Als je nog geen maand-element hebt, maak ik hem automatisch
+if (!maandEl) {
+  maandEl = document.createElement("div");
+  maandEl.id = "prijsMaand";
+  maandEl.style.fontSize = "18px";
+  maandEl.style.marginTop = "6px";
+  prijsEenmaligEl.parentNode.appendChild(maandEl);
+}
+
+function updateOpties() {
+  const pakketPrijs = pakketSelect.value;
+
+  document.querySelectorAll(".extra-group").forEach(group => {
+    group.style.display = group.dataset.pakket === pakketPrijs ? "block" : "none";
+
+    if (group.dataset.pakket !== pakketPrijs) {
+      group.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
+    }
+  });
+
+  updatePrijs();
+}
+
+function updatePrijs() {
+  let eenmalig = parseFloat(pakketSelect.value);
+  let maand = 0;
+
+  // Voeg maandelijkse basisprijs toe
+  if (pakketSelect.value === "395") maand += 30;
+  if (pakketSelect.value === "795") maand += 45;
+  if (pakketSelect.value === "1495") maand += 75;
+
+  // Loop door alle aangevinkte opties
+  document.querySelectorAll(".extra-group input[type='checkbox']:checked").forEach(cb => {
+    const price = parseFloat(cb.dataset.price);
+
+    if (cb.dataset.month === "true") {
+      maand += price;
+    } else {
+      eenmalig += price;
+    }
+  });
+
+  prijsEenmaligEl.textContent = "Eenmalig: €" + eenmalig.toFixed(2);
+  maandEl.textContent = "Per maand: €" + maand.toFixed(2);
+}
+
+pakketSelect.addEventListener("change", updateOpties);
+document.addEventListener("change", e => {
+  if (e.target.classList.contains("extra")) updatePrijs();
+});
+
+updateOpties();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!--
+  pakketten.html — Kasper Webstudio
+  INSTRUCTIES:
+  1) Plaats dit bestand in dezelfde map als je index.html of link vanaf je hoofdpagina.
+  2) Vervang alle placeholders: /assets/logo.svg, /assets/hero.jpg, e-mail en telefoon.
+  3) Pas prijzen of bullets aan waar nodig. Dit bestand gebruikt dezelfde stijl en fonts als index.html.
+  4) Voor live formulierverzending: koppel het formulier aan je backend of gebruik mailto fallback (zie comment in JS).
+-->
+
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pakketten — Kasper Webstudio</title>
+  <meta name="description" content="Kasper Webstudio pakketten: Starter, Business en Premium. Transparante prijzen en duidelijke deliverables." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f62fe;
+      --accent-2:#10b981;
+      --dark:#0b1220;
+      --card:#f8fafc;
+      --radius:12px;
+      --max-width:1100px;
+      --pad:28px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:var(--pad)}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6f9cff);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:Poppins;font-size:20px}
+    nav a{color:var(--muted);margin-left:16px;font-weight:600}
+    .hero{display:flex;gap:28px;align-items:center;padding:36px 0;border-bottom:1px solid #f3f4f6}
+    .hero-left{flex:1}
+    .hero-left h1{font-family:Poppins;font-size:32px;margin:0 0 10px;line-height:1.02;text-align:center}
+    .hero-left p{color:var(--muted);margin:0 0 18px;text-align:center}
+    .hero-cta{display:flex;gap:12px;justify-content:center}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;background:var(--accent);color:white;font-weight:700;font-family:Poppins}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(15,98,254,0.12)}
+    .hero-img{width:320px;border-radius:12px;overflow:hidden;flex-shrink:0}
+    .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Packages grid */
+    .packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .card{background:white;border-radius:12px;padding:20px;border:1px solid #f3f4f6;display:flex;flex-direction:column;gap:12px;min-height:320px}
+    .card h3{margin:0;font-family:Poppins;font-size:18px}
+    .price{font-size:22px;font-weight:800;color:var(--accent)}
+    .features{color:var(--muted);padding-left:16px}
+    .card .cta{margin-top:auto}
+
+    /* Comparison table */
+    .compare{margin-top:36px;border-radius:12px;overflow:auto;border:1px solid #eef2ff}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:14px 16px;text-align:left;border-bottom:1px solid #f7f9fc}
+    th{background:#fbfdff;font-family:Poppins}
+    td.small{color:var(--muted);font-size:14px}
+
+    /* FAQ & notes */
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+    .faq .box{background:white;padding:18px;border-radius:12px;border:1px solid #f3f4f6}
+    .note{font-size:13px;color:var(--muted)}
+
+    /* Contact CTA */
+    .contact-cta{display:flex;gap:12px;align-items:center;margin-top:22px;justify-content:center}
+
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f3f4f6;margin-top:36px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .packages-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{flex-direction:column;align-items:center}
+      .hero-left h1{font-size:28px}
+      .hero-img{width:100%;max-width:420px}
+      .faq{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .packages-grid{grid-template-columns:1fr}
+      header{padding:12px 0}
+      .logo{width:48px;height:48px}
+      .hero-left h1{text-align:center}
+    }.card.disabled {
+  opacity: 0.45;
+  filter: grayscale(100%);
+  pointer-events: none; /* maakt klikken onmogelijk */
+  position: relative;
+}
+
+.card.disabled::after {
+  content: "Niet beschikbaar";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #b91c1c;
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">KW</div>
+      <div>
+        <div style="font-weight:700">Kasper Webstudio</div>
+        <div style="font-size:13px;color:var(--muted)">Websites • Branding • Content</div>
+      </div>
+    </div>
+
+    <nav aria-label="Hoofdmenu">
+      <a href="kasperwebstudio.html">Home</a>
+ <a href="diensten.html">Diensten</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pakketten.html" style="margin-left:10px;font-weight:800;color:var(--dark)">Pakketten</a>
+      <a href="contact.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="pakketten-hero">
+      <div class="hero-left">
+        <h1 id="pakketten-hero">Kies een pakket dat past bij jouw bedrijf</h1>
+        <p class="lead">Transparante pakketten met vaste deliverables. Snel live, professioneel ontwerp en 30 dagen nazorg. Geen verborgen kosten.</p>
+        <div class="hero-cta">
+          <a class="btn secondary" href="offerte.html">Offerte aanvragen</a>
+        </div>
+      </div>
+
+    </section>
+
+  <!-- PACKAGES -->
+<section id="packages" aria-labelledby="packages-title" style="padding-top:28px">
+  <h2 id="packages-title" style="font-family:Poppins;text-align:center">Beschikbare pakketten</h2>
+  <p class="note" style="text-align:center;margin-top:8px">Alle pakketten inclusief 30 dagen nazorg. Hosting en onderhoud optioneel.</p>
+
+  <div class="packages-grid" role="list">
+
+    <!-- Starter -->
+    <article class="card" role="listitem" aria-labelledby="starter-title">
+      <h3 id="starter-title">Starter</h3>
+      <div class="price">€395 opzetkosten + €30 / maand</div>
+      <p class="small">Snel online met een professionele one‑page. Perfect voor zzp'ers en kleine bedrijven.</p>
+      <ul class="features">
+        <li>1–3 pagina's (Home, Diensten, Contact)</li>
+        <li>Responsive HTML/CSS</li>
+        <li>Contactformulier & mailto fallback</li>
+        <li>Basis SEO (title, meta, H1)</li>
+        <li>1 revisieronde</li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="Starter.html">Bekijken</a>
+      </div>
+    </article>
+
+    <!-- Business (disabled) -->
+    <article class="card disabled" role="listitem" aria-labelledby="business-title">
+      <h3 id="business-title">Business</h3>
+      <div class="price">€795 opzetkosten + €45 / maand</div>
+      <p class="small">Voor groeiende bedrijven die meer pagina's en portfolio‑functionaliteit nodig hebben.</p>
+      <ul class="features">
+        <li>4–7 pagina's</li>
+        <li>Portfolio & case pages</li>
+        <li>2 revisierondes</li>
+        <li>Laadtijd optimalisatie</li>
+        <li>Google Maps integratie (indien nodig)</li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="Business.html">Bekijken</a>
+      </div>
+    </article>
+
+    <!-- Premium (disabled) -->
+    <article class="card disabled" role="listitem" aria-labelledby="premium-title">
+      <h3 id="premium-title">Premium</h3>
+      <div class="price">€1.495 opzetkosten + €74,99 / maand </div>
+      <p class="small">Maatwerk voor bedrijven met specifieke wensen: extra functionaliteit en content‑support.</p>
+      <ul class="features">
+        <li>Maatwerkdesign & development</li>
+        <li>Content‑support (tekst & beeld)</li>
+        <li>3 revisierondes + training</li>
+        <li>Integraties (boekingen, betalingen, meertaligheid)</li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="Premium.html">Bekijken</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+      <!-- Comparison table -->
+      <div class="compare" aria-hidden="false" style="margin-top:28px">
+        <table role="table" aria-label="Vergelijking pakketten">
+          <thead>
+            <tr>
+              <th>Kenmerk</th>
+              <th>Starter</th>
+              <th>Business</th>
+              <th>Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="small">Pagina's</td>
+              <td>1–3</td>
+              <td>4–7</td>
+              <td>8+ / maatwerk</td>
+            </tr>
+            <tr>
+              <td class="small">Revisierondes</td>
+              <td>1</td>
+              <td>2</td>
+              <td>3+</td>
+            </tr>
+            <tr>
+              <td class="small">Basis SEO</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓ + advanced</td>
+            </tr>
+            <tr>
+              <td class="small">Portfolio / cases</td>
+              <td>—</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td class="small">Content support</td>
+              <td>—</td>
+              <td>Optie</td>
+              <td>Inclusief</td>
+            </tr>
+            <tr>
+              <td class="small">Levertijd (indicatie)</td>
+              <td>3–5 werkdagen</td>
+              <td>7–10 werkdagen</td>
+              <td>14–21 werkdagen</td>
+            </tr>
+            <tr>
+              <td class="small">Nazorg</td>
+              <td>30 dagen</td>
+              <td>30 dagen</td>
+              <td>30 dagen + training</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQ and notes -->
+      <div class="faq" style="margin-top:28px">
+        <div class="box">
+          <h4 style="margin-top:0;font-family:Poppins">Veelgestelde vragen</h4>
+          <p class="small"><strong>Wat is inbegrepen bij de prijs?</strong><br>Design, ontwikkeling, basis SEO en 30 dagen nazorg. Hosting is optioneel.</p>
+          <p class="small"><strong>Hoe werkt betaling?</strong><br>50% aanbetaling bij opdracht, 50% bij oplevering. Factuur binnen 7 dagen.</p>
+          <p class="small"><strong>Wat als ik content niet op tijd aanlever?</strong><br>Levertijd start na volledige aanlevering van teksten en beelden. Je kunt content laten schrijven als extra service.</p>
+        </div>
+
+        <div class="box">
+          <h4 style="margin-top:0;font-family:Poppins">Praktische notities</h4>
+          <p class="small"><strong>Hosting:</strong> €60/jaar optioneel (inclusief SSL & back‑ups).</p>
+          <p class="small"><strong>Meerwerk:</strong> €60/uur of volgens offerte voor extra functionaliteit.</p>
+          <p class="small"><strong>Referenties:</strong> we tonen je site als referentie tenzij anders afgesproken.</p>
+        </div>
+      </div>
+
+      <!-- Contact CTA -->
+      <div class="contact-cta">
+        <a class="btn" href="offerte.html">Offerte aanvragen</a>
+        <a class="btn secondary" href="contact.html">Bel of mail ons</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <strong>Kasper Webstudio</strong> — Websites • Branding • Content — Enschede
+      <div style="margin-top:8px;color:var(--muted)">E‑mail: <a href="mailto:info@kasperwebstudio.nl">info@kasperwebstudio.nl</a> • Tel: 06‑0000‑0000</div>
+    </div>
+  </footer>
+
+  <script>
+    // Optionele JS: scroll naar packages als ?packages in URL
+    if(window.location.search.includes('packages')) {
+      document.getElementById('packages')?.scrollIntoView({behavior:'smooth'});
+    }
+
+    // Formulierverzending: zie index.html voor volledige integratie instructies.
+  </script>
+</body>
+</html>

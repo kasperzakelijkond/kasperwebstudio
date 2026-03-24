@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Premium Pakket – Kasper Webstudio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --muted:#6b7280;
+  --accent:#0f62fe;
+  --accent-2:#10b981;
+  --dark:#0b1220;
+  --card:#f8fafc;
+  --radius:12px;
+  --max-width:1100px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto;
+  background:var(--bg);
+  color:var(--dark);
+  line-height:1.5;
+}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:48px 24px;}
+header{display:flex;align-items:center;justify-content:space-between;padding:28px 24px;}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+  width:56px;height:56px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),#6f9cff);
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:700;font-family:Poppins;font-size:20px;
+  box-shadow:0 6px 20px rgba(15,98,254,0.12);
+}
+.brand h1{font-size:18px;margin:0;font-weight:700;font-family:Poppins}
+nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+nav a:hover{color:var(--dark)}
+
+h2,h3,h4{font-family:Poppins;margin:0 0 12px}
+
+/* Buttons */
+.btn{
+  display:inline-block;padding:12px 18px;border-radius:10px;
+  background:var(--accent);color:white;font-weight:700;text-decoration:none;
+  box-shadow:0 8px 30px rgba(15,98,254,0.12);
+}
+.btn.secondary{
+  background:transparent;color:var(--accent);
+  border:1px solid rgba(15,98,254,0.2);
+}
+
+/* Hero */
+.hero{
+  padding:48px 0;
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:48px;
+  align-items:center;
+}
+.hero p{color:var(--muted);font-size:16px;margin-bottom:20px}
+
+/* Card */
+.card{
+  background:white;
+  padding:24px;
+  border-radius:var(--radius);
+  border:1px solid #f1f5f9;
+  box-shadow:0 8px 30px rgba(2,6,23,0.04);
+  margin-bottom:32px;
+}
+
+/* Lists */
+.card ul{margin:0;padding-left:18px;color:var(--muted)}
+.card ul li{margin-bottom:6px}
+
+/* Table */
+.table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+  color:var(--muted);
+}
+.table th,
+.table td{
+  padding:8px 10px;
+  border-bottom:1px solid #e5e7eb;
+  text-align:left;
+}
+.table th{
+  color:var(--dark);
+  font-weight:600;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">KW</div>
+    <div>
+      <h1>Kasper Webstudio</h1>
+      <div class="small" style="color:var(--muted)">Websites • Branding • Content</div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="diensten.html">Diensten</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pakketten.html">Pakketten</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="container">
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h2>Premium Pakket</h2>
+    <p>Voor ambitieuze bedrijven die een luxe, strategische en volledig op maat gemaakte website willen die merk, leads en groei ondersteunt.</p>
+
+    <p style="font-size:20px;font-weight:700;margin:20px 0">
+      €1495 opzetkosten <br>
+      <span style="color:var(--muted);font-size:16px">+ €75 per maand (premium hosting, onderhoud & priority support)</span>
+    </p>
+
+    <a class="btn" href="contact.html">Bestellen</a>
+    <a class="btn secondary" href="#details">Bekijk details</a>
+  </div>
+
+  <div class="card">
+    <h3>Wat zit erin?</h3>
+    <ul>
+      <li>Tot 12 pagina’s</li>
+      <li>High‑end maatwerk design</li>
+      <li>Blogmodule & portfolio met filters</li>
+      <li>Premium SEO optimalisatie</li>
+      <li>3 revisierondes & 60 dagen nazorg</li>
+    </ul>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section id="details">
+
+  <h3>Wat je krijgt in het Premium pakket</h3>
+
+  <div class="card">
+    <h4>1. Pagina’s (tot 12 pagina’s)</h4>
+    <p class="small" style="color:var(--muted)">Inclusief:</p>
+    <ul>
+      <li>Home</li>
+      <li>Diensten / Aanbod</li>
+      <li>Over ons / Over mij</li>
+      <li>Portfolio / Cases</li>
+      <li>Contact</li>
+      <li>Tarieven / Pakketten</li>
+      <li>FAQ</li>
+      <li>Team / Over het bedrijf</li>
+      <li>Blogpagina + blogoverzicht</li>
+      <li>3 blogartikelen geplaatst (content door klant aangeleverd)</li>
+      <li>Extra pagina naar keuze</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs:</strong> Extra pagina’s — €54,95 per pagina</p>
+  </div>
+
+  <div class="card">
+    <h4>2. High‑end maatwerk design</h4>
+    <ul>
+      <li>Volledig custom design</li>
+      <li>Premium iconen, animaties & micro‑interacties</li>
+      <li>Sterke merkbeleving & storytelling</li>
+      <li>Professionele hero’s, USP’s, testimonials, CTA’s</li>
+      <li>Pixel‑perfect design</li>
+      <li>Dark/light mode</li>
+    </ul>
+    <p style="margin-top:12px;color:var(--muted)">(Geen meerprijs — inbegrepen)</p>
+  </div>
+
+  <div class="card">
+    <h4>3. Geavanceerde technische kwaliteit</h4>
+    <ul>
+      <li>HTML/CSS/JavaScript</li>
+      <li>Animaties (fade‑ins, scroll effects, hover effects)</li>
+      <li>Geoptimaliseerde performance</li>
+      <li>Browsercompatibiliteit</li>
+      <li>SEO‑vriendelijke structuur</li>
+      <li>Integratie van externe tools (Calendly, Mailchimp, CRM, etc.)</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs (optioneel):</strong> Integratie van extra externe tools — €25 per integratie</p>
+  </div>
+
+  <div class="card">
+    <h4>4. Functionaliteiten</h4>
+    <ul>
+      <li>Uitgebreid contactformulier</li>
+      <li>Portfolio module met filters</li>
+      <li>Blogmodule + categorieën</li>
+      <li>FAQ module</li>
+      <li>Downloadbare PDF’s</li>
+      <li>Social media integraties</li>
+      <li>Google Maps</li>
+      <li>Volledige cookie melding</li>
+      <li>SSL beveiliging</li>
+      <li>Testimonials slider</li>
+      <li>Teamprofielen</li>
+      <li>Video secties</li>
+      <li>Klantlogo carrousel</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs (optioneel):</strong></p>
+    <ul>
+      <li>Extra PDF’s door mij opgemaakt — €25 per PDF</li>
+      <li>Extra video secties (bewerking + optimalisatie) — €45 per video</li>
+      <li>Extra carrousel (bijv. partners) — €35</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>5. Premium SEO optimalisatie</h4>
+    <ul>
+      <li>Uitgebreide SEO basis</li>
+      <li>Zoekwoordenonderzoek (5–10 termen)</li>
+      <li>Meta titels & descriptions</li>
+      <li>Alt‑teksten</li>
+      <li>Technische SEO</li>
+      <li>Structured data (schema markup)</li>
+      <li>Optimalisatie van headings & contentstructuur</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs (optioneel):</strong></p>
+    <ul>
+      <li>SEO contentcreatie (blogartikelen) — €95 per artikel</li>
+      <li>Uitgebreid SEO pakket (20+ zoekwoorden) — vanaf €295</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>6. Content & copywriting support</h4>
+    <ul>
+      <li>Jij levert basisinformatie aan</li>
+      <li>Ik herschrijf en optimaliseer teksten</li>
+      <li>Tot 1.500 woorden inbegrepen</li>
+      <li>Professionele plaatsing van visuals</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs (optioneel):</strong></p>
+    <ul>
+      <li>Volledige copywriting — €95 per pagina</li>
+      <li>Bundel copywriting (3 pagina’s) — €249</li>
+      <li>Extra woorden boven 1.500 — €0,08 per woord</li>
+      <li>Stockfoto’s door mij — €7 per foto</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>7. Revisierondes</h4>
+    <ul>
+      <li>3 revisierondes inbegrepen</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs:</strong> Extra revisieronde — €35 per ronde</p>
+  </div>
+
+  <div class="card">
+    <h4>8. Levertijd</h4>
+    <ul>
+      <li>10–20 werkdagen</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs (optioneel):</strong></p>
+    <ul>
+      <li>Spoedlevering (5–7 dagen) — €125</li>
+      <li>Super spoed (3–4 dagen) — €195</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>9. Premium nazorg & ondersteuning</h4>
+    <ul>
+      <li>60 dagen nazorg</li>
+      <li>Kleine wijzigingen inbegrepen</li>
+      <li>Priority support</li>
+      <li>Maandelijkse check‑up</li>
+    </ul>
+    <p style="margin-top:12px;color:var(--muted)">(Geen meerprijs — inbegrepen)</p>
+  </div>
+
+  <div class="card">
+    <h4>10. Premium hosting & onderhoud (€75 per maand)</h4>
+    <ul>
+      <li>Premium hosting</li>
+      <li>Domeinbeheer (optioneel)</li>
+      <li>Dagelijkse back‑ups</li>
+      <li>Beveiligingsupdates</li>
+      <li>Monitoring</li>
+      <li>Prioriteitssupport</li>
+      <li>Kleine maandelijkse wijzigingen</li>
+      <li>Performance optimalisatie</li>
+      <li>Uptime monitoring</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Meerprijs (optioneel):</strong></p>
+    <ul>
+      <li>Domeinregistratie — €12 per jaar</li>
+      <li>Extra mailboxen — €2,50 per mailbox per maand</li>
+      <li>Extra opslagruimte — €3 per GB per maand</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>Overzicht specificaties</h4>
+    <table class="table">
+      <tr>
+        <th>Onderdeel</th>
+        <th>Premium</th>
+      </tr>
+      <tr>
+        <td>Pagina’s</td>
+        <td>Tot 12</td>
+      </tr>
+      <tr>
+        <td>Design</td>
+        <td>High‑end maatwerk + animaties</td>
+      </tr>
+      <tr>
+        <td>Contactformulier</td>
+        <td>Uitgebreid</td>
+      </tr>
+      <tr>
+        <td>Portfolio</td>
+        <td>✓ (met filters)</td>
+      </tr>
+      <tr>
+        <td>Blogmodule</td>
+        <td>✓</td>
+      </tr>
+      <tr>
+        <td>FAQ module</td>
+        <td>✓</td>
+      </tr>
+      <tr>
+        <td>SEO</td>
+        <td>Uitgebreid + zoekwoordenonderzoek</td>
+      </tr>
+      <tr>
+        <td>Revisierondes</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>Content support</td>
+        <td>✓ (herschrijven + optimalisatie)</td>
+      </tr>
+      <tr>
+        <td>Levertijd</td>
+        <td>10–20 werkdagen</td>
+      </tr>
+      <tr>
+        <td>Nazorg</td>
+        <td>60 dagen</td>
+      </tr>
+      <tr>
+        <td>Hosting & onderhoud</td>
+        <td>€75 / maand</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h4>Optionele uitbreidingen (meerprijs)</h4>
+    <ul>
+      <li>Extra pagina’s — €54,95 per pagina</li>
+      <li>Volledige copywriting — €95 per pagina</li>
+      <li>Branding / logo ontwerp — vanaf €149</li>
+      <li>Social media templates — vanaf €49</li>
+      <li>Webshop (basis) — vanaf €295</li>
+      <li>Webshop (uitgebreid) — vanaf €595</li>
+      <li>Meertaligheid — vanaf €149 per taal</li>
+      <li>Fotografie — vanaf €95 per sessie</li>
+      <li>Video — vanaf €149</li>
+      <li>Conversie optimalisatie — vanaf €75</li>
+      <li>Landingspagina’s voor advertenties — €149 per pagina</li>
+      <li>CRM / e‑mailmarketing integratie — €25 per integratie</li>
+    </ul>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div class="container" style="text-align:center;color:var(--muted);font-size:14px">
+    © Kasper Webstudio — Websites • Branding • Content
+  </div>
+</footer>
+
+</body>
+</html>
