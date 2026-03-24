@@ -191,14 +191,43 @@ footer{
 
     <!-- Business -->
     <div class="extra-group" data-pakket="795" style="display:none">
-      <!-- (zelfde structuur, ik laat het staan zoals jij het had) -->
-      <!-- ... -->
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="54.95"> Extra pagina – €54,95</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="49"> FAQ module – €49</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="25"> Extra PDF – €25</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="195"> Uitgebreid SEO pakket – €195</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="95"> Copywriting per pagina – €95</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="249"> Copywriting bundel – €249</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="7"> Stockfoto’s – €7</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="35"> Extra revisieronde – €35</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="95"> Spoedoplevering – €95</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="12"> Domeinregistratie – €12</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="2.5"> Extra mailbox – €2,50</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="295"> Webshop (basis) – €295</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="149"> Meertaligheid – €149</label>
     </div>
 
     <!-- Premium -->
     <div class="extra-group" data-pakket="1495" style="display:none">
-      <!-- (zelfde structuur, ik laat het staan zoals jij het had) -->
-      <!-- ... -->
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="54.95"> Extra pagina – €54,95</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="25"> Extra tool integratie – €25</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="25"> Extra PDF – €25</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="45"> Extra video sectie – €45</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="35"> Extra carrousel – €35</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="95"> SEO blogartikel – €95</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="295"> Uitgebreid SEO pakket – €295</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="95"> Copywriting per pagina – €95</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="249"> Copywriting bundel – €249</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="7"> Stockfoto’s – €7</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="35"> Extra revisieronde – €35</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="125"> Spoedlevering – €125</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="195"> Super‑spoed – €195</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="12"> Domeinregistratie – €12</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="2.5"> Extra mailbox – €2,50</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="3"> Extra opslagruimte – €3</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="149"> Branding – €149</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="49"> Social media templates – €49</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="295"> Webshop (basis) – €295</label>
+      <label><input type="checkbox" class="extra" name="extra[]" data-price="149"> Meertaligheid – €149</label>
     </div>
   </div>
 
@@ -218,6 +247,86 @@ footer{
 
 </form>
 
+<script>
+const pakketSelect = document.getElementById("pakket");
+const prijsEl = document.getElementById("prijs");
+const msg = document.getElementById("msg");
+const form = document.getElementById("offerteForm");
+
+// juiste extra-groep tonen bij pakket
+pakketSelect.addEventListener("change", () => {
+  const value = pakketSelect.value;
+
+  document.querySelectorAll(".extra-group").forEach(group => {
+    const active = group.dataset.pakket === value;
+    group.style.display = active ? "block" : "none";
+    if (!active) {
+      group.querySelectorAll("input[type=checkbox]").forEach(cb => cb.checked = false);
+    }
+  });
+
+  updatePrice();
+});
+
+// prijs berekenen
+function updatePrice() {
+  let totaal = Number(pakketSelect.value);
+
+  document
+    .querySelectorAll(".extra-group input.extra:checked")
+    .forEach(cb => {
+      totaal += Number(cb.dataset.price);
+    });
+
+  prijsEl.textContent = "€" + totaal.toFixed(2).replace(".", ",");
+}
+
+document.querySelectorAll(".extra").forEach(cb => {
+  cb.addEventListener("change", updatePrice);
+});
+
+// Formspree submit zonder redirect
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  msg.style.color = "var(--muted)";
+  msg.textContent = "Versturen…";
+
+  const data = new FormData(form);
+  data.append("totaal", prijsEl.textContent);
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: data,
+    headers: { "Accept": "application/json" }
+  });
+
+  if (response.ok) {
+    msg.style.color = "green";
+    msg.textContent = "Bedankt! Je offerteaanvraag is verzonden.";
+    form.reset();
+    // na reset: standaard pakket + prijs herstellen
+    pakketSelect.value = "395";
+    document.querySelectorAll(".extra-group").forEach(group => {
+      group.style.display = group.dataset.pakket === "395" ? "block" : "none";
+      group.querySelectorAll("input[type=checkbox]").forEach(cb => cb.checked = false);
+    });
+    updatePrice();
+  } else {
+    msg.style.color = "red";
+    msg.textContent = "Er ging iets mis. Probeer het later opnieuw.";
+  }
+});
+
+// init
+document.addEventListener("DOMContentLoaded", () => {
+  // zorg dat alleen starter-opties zichtbaar zijn bij load
+  document.querySelectorAll(".extra-group").forEach(group => {
+    group.style.display = group.dataset.pakket === pakketSelect.value ? "block" : "none";
+  });
+  updatePrice();
+});
+</script>
 </main>
 
 <footer>
