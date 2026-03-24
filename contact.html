@@ -117,49 +117,92 @@
     <!-- CONTACT GRID -->
     <section style="padding-top:28px">
       <div class="grid">
-        <!-- Form -->
-        <form id="contactForm" onsubmit="submitForm(event)" aria-label="Contactformulier" novalidate>
-          <div>
-            <label for="name">Naam</label>
-            <input id="name" name="name" type="text" required placeholder="Voornaam Achternaam" aria-required="true">
-          </div>
+<!-- Form -->
+<form id="contactForm" 
+      action="https://formspree.io/f/mnjgeovw"
+      method="POST"
+      onsubmit="submitForm(event)" 
+      aria-label="Contactformulier" 
+      novalidate>
 
-          <div>
-            <label for="email">E‑mail</label>
-            <input id="email" name="email" type="email" required placeholder="naam@voorbeeld.nl" aria-required="true">
-          </div>
+  <div>
+    <label for="name">Naam</label>
+    <input id="name" name="name" type="text" required placeholder="Voornaam Achternaam" aria-required="true">
+  </div>
 
-          <div>
-            <label for="company">Bedrijf (optioneel)</label>
-            <input id="company" name="company" type="text" placeholder="Bedrijfsnaam">
-          </div>
+  <div>
+    <label for="email">E‑mail</label>
+    <input id="email" name="email" type="email" required placeholder="naam@voorbeeld.nl" aria-required="true">
+  </div>
 
-          <div>
-            <label for="service">Waar gaat het om?</label>
-            <select id="service" name="service" aria-label="Kies dienst">
-              <option value="starter">Starter pakket</option>
-              <option value="business">Business pakket</option>
-              <option value="premium">Premium / Maatwerk</option>
-              <option value="other">Anders / Vraag</option>
-            </select>
-          </div>
+  <div>
+    <label for="company">Bedrijf (optioneel)</label>
+    <input id="company" name="company" type="text" placeholder="Bedrijfsnaam">
+  </div>
 
-          <div>
-            <label for="message">Bericht</label>
-            <textarea id="message" name="message" placeholder="Vertel kort wat je nodig hebt..." required aria-required="true"></textarea>
-          </div>
+  <div>
+    <label for="service">Waar gaat het om?</label>
+    <select id="service" name="service" aria-label="Kies dienst">
+      <option value="starter">Starter pakket</option>
+      <option value="business">Business pakket</option>
+      <option value="premium">Premium / Maatwerk</option>
+      <option value="other">Anders / Vraag</option>
+    </select>
+  </div>
 
-          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-            <button class="btn" type="submit">Verstuur aanvraag</button>
-            <button type="button" class="btn secondary" onclick="openMailto()">Mail direct</button>
-            <div class="small">Of bel: <strong style="color:var(--accent)">06‑0000‑0000</strong></div>
-          </div>
+  <div>
+    <label for="message">Bericht</label>
+    <textarea id="message" name="message" placeholder="Vertel kort wat je nodig hebt..." required aria-required="true"></textarea>
+  </div>
 
-          <div id="formMsg" class="small" style="color:var(--muted);margin-top:8px" role="status" aria-live="polite"></div>
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <button class="btn" type="submit">Verstuur aanvraag</button>
+    <button type="button" class="btn secondary" onclick="openMailto()">Mail direct</button>
+    <div class="small">Of bel: <strong style="color:var(--accent)">06‑0000‑0000</strong></div>
+  </div>
 
-          <div class="legal">Door te verzenden ga je akkoord met onze <a href="privacy.html">privacyverklaring</a>.</div>
-        </form>
+  <div id="formMsg" class="small" style="color:var(--muted);margin-top:8px" role="status" aria-live="polite"></div>
 
+  <div class="legal">Door te verzenden ga je akkoord met onze <a href="privacy.html">privacyverklaring</a>.</div>
+</form>
+
+<script>
+async function submitForm(event) {
+  event.preventDefault();
+
+  const form = document.getElementById("contactForm");
+  const msg = document.getElementById("formMsg");
+
+  msg.style.color = "var(--muted)";
+  msg.textContent = "Versturen…";
+
+  const data = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: data,
+    headers: { "Accept": "application/json" }
+  });
+
+  if (response.ok) {
+    msg.style.color = "green";
+    msg.textContent = "Bedankt! Je aanvraag is succesvol verzonden.";
+    form.reset();
+  } else {
+    msg.style.color = "red";
+    msg.textContent = "Er ging iets mis. Probeer het later opnieuw.";
+  }
+}
+
+function openMailto() {
+  const name = document.getElementById("name").value || "";
+  const email = document.getElementById("email").value || "";
+  const subject = encodeURIComponent("Vraag via website");
+  const body = encodeURIComponent(`Naam: ${name}\nE-mail: ${email}\n\nBericht:`);
+
+  window.location.href = `mailto:info@jouwdomein.nl?subject=${subject}&body=${body}`;
+}
+</script>
         <!-- Info card -->
         <aside class="info-card" aria-label="Contactinformatie">
           <h3 style="margin-top:0;font-family:Poppins">Contactgegevens</h3>
